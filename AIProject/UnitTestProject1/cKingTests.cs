@@ -1,0 +1,125 @@
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Linq;
+using AIProject;
+using static AIProject.cKing;
+
+
+namespace cKingTests
+{
+    [TestClass]
+    public class UnitTest1
+    {
+
+
+        [TestMethod]
+        public void TestvalidMove_AssertValidMove()
+        {
+            //Arrange
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 1;
+            currentPosition[1] = 1;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 2;
+            newPosition[1] = 1;
+
+            //Act
+            cKing myKing = new cKing(true);
+            bool result = myKing.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+        [TestMethod]
+        public void TestValidMove_AssertInvalidMove()
+        {
+            //Arrange
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 1;
+            currentPosition[1] = 1;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 5;
+            newPosition[1] = 1;
+
+            //Act
+            cKing myKing = new cKing(true);
+            bool result = myKing.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsFalse(result);
+
+        }
+
+        [TestMethod]
+        public void TestPieceNotMoving_AssertFalse()
+        {
+            //Arrange
+            int[] position = new int[2];
+            position[0] = 1;
+            position[1] = 1;
+            //Act
+            cKing myKing = new cKing(true);
+            bool result = myKing.MovePiece(position, position);
+
+            //Assert
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void TestFieldOccupiedByenemyPiece_AssertTrue()
+        {
+            cPiece[,] board = new cPiece[8, 8];
+            board[0, 0] = new cKing(true);
+            board[1, 0] = new cKing(false);
+            cGameBoard myBoard = new cGameBoard(board); 
+            
+            //Arrange
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 0;
+            currentPosition[1] = 0;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 1;
+            newPosition[1] = 0;
+
+            //Act
+            cKing myKing = new cKing(true);
+            bool result = myKing.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+        [TestMethod]
+        public void TestFieldOccupiedByFreindlyPiece_AssertFalse()
+        {
+            cPiece[,] board = new cPiece[8, 8];
+            board[0, 0] = new cKing(true);
+            board[1, 0] = new cKing(true);
+            cGameBoard myBoard = new cGameBoard(board);
+
+            //Arrange
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 0;
+            currentPosition[1] = 0;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 1;
+            newPosition[1] = 0;
+
+            //Act
+            cKing myKing = new cKing(true);
+            bool result = myKing.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsFalse(result);
+
+        }
+    }
+}
