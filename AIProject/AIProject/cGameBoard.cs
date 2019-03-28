@@ -33,12 +33,12 @@ namespace AIProject
             }
 
             board[0, 0] = new cRook(true);
-            board[1, 0] = new cKnight(true);
+            board[1, 0] = new cKing(true);
             board[2, 0] = new cBishop(true);
             board[3, 0] = new cQueen(true);
-            board[4, 0] = new King(true);
+            board[4, 0] = new cKing(true);
             board[5, 0] = new cBishop(true);
-            board[6, 0] = new cKnight(true);
+            board[6, 0] = new cKing(true);
             board[7, 0] = new cRook(true);
 
             for (int i = 0; i < 8; i++)
@@ -48,12 +48,12 @@ namespace AIProject
             }
 
             board[0, 7] = new cRook(false);
-            board[1, 7] = new cKnight(false);
+            board[1, 7] = new cKing(false);
             board[2, 7] = new cBishop(false);
             board[3, 7] = new cQueen(false);
-            board[4, 7] = new King(false);
+            board[4, 7] = new cKing(false);
             board[5, 7] = new cBishop(false);
-            board[6, 7] = new cKnight(false);
+            board[6, 7] = new cKing(false);
             board[7, 7] = new cRook(false);
 
 

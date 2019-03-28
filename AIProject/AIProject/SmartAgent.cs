@@ -72,7 +72,7 @@ namespace AIProject
             }
 
 
-            return null;
+            return possibeActions;
         }
     }
 }

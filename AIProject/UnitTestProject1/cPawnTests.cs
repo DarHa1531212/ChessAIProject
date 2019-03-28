@@ -89,7 +89,7 @@ namespace PawnTests
             newPosition[1] = 4;
 
             //Act
-            King myPawn = new King(true);
+            cKing myPawn = new cKing(true);
             bool result = myPawn.MovePiece(currentPosition, newPosition);
 
             //Assert

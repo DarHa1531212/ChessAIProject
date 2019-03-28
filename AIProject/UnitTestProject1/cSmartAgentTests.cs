@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AIProject;
 using System.Collections.Generic;
 
+
 namespace SmartAgentTests
 {
     [TestClass]
@@ -13,7 +14,7 @@ namespace SmartAgentTests
         {
             //arrange
             cPiece[,] tempBoard = new cPiece[8, 8];
-            cKnight myKing = new cKnight(true);
+            cKing myKing = new cKing(true);
             tempBoard[3, 3] = myKing;
 
             SmartAgent tempAgent = new SmartAgent();
