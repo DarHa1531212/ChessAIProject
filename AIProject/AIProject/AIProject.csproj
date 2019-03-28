@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="cGameBoard.cs" />
     <Compile Include="cKing.cs" />
+    <Compile Include="cKnight.cs" />
     <Compile Include="cPawn.cs" />
     <Compile Include="cPiece.cs" />
     <Compile Include="IPiece.cs" />
