@@ -11,11 +11,11 @@ namespace AIProject
 {
     public class Pawn : cPiece
     {
-        public Pawn(bool pawnTeam) : base(pawnTeam, 1)
+        public Pawn(bool pawnTeam) : base(pawnTeam, 1,'P')
         {
         }
 
-        public bool MovePiece(int[] currentPosition, int[] newPosition)
+        public override bool MovePiece(int[] currentPosition, int[] newPosition)
         {
             if (ValidatePawnMove(currentPosition, newPosition))
             {
@@ -27,24 +27,28 @@ namespace AIProject
 
         }
 
-        private bool ValidatePawnMove(int[] currentPosition, int[] newPosition)
+        private bool ValidatePawnMove(int[] currentPosition, int[] nextPosition)
         {
+            cPiece[,] tempBoard = new cPiece[8, 8];
+            int posX = nextPosition[0];
+            int posY = nextPosition[1];
+
+            tempBoard = cGameBoard.board;
+
+
             //advanced in the right direction
-            if ((PieceTeam == true && newPosition[1] - currentPosition[1] == 1) || PieceTeam == false && currentPosition[1] - newPosition[1] == 1)
+            if ((PieceTeam == true && nextPosition[1] - currentPosition[1] == 1) || PieceTeam == false && currentPosition[1] - nextPosition[1] == 1)
             {
                 //advanced straight
-                if (currentPosition[0] == newPosition[0])
+                /*sould this not be != */
+                if (currentPosition[0] == nextPosition[0] && tempBoard[posX,posY] ==  null)
                 {
                     return true;
                 }
                 //ate another piece
-                else if (currentPosition[0] == newPosition[0] + 1 || currentPosition[0] == newPosition[0] - 1)
+                else if (currentPosition[0] == nextPosition[0] + 1 || currentPosition[0] == nextPosition[0] - 1)
                 {
-                    cPiece[,] tempBoard = new cPiece[8, 8];
-                    int posX = newPosition[0];
-                    int posY = newPosition[1];
 
-                    tempBoard = cGameBoard.board;
 
                     if (tempBoard[posX, posY].PieceTeam != PieceTeam)
                     { return true; }
@@ -52,9 +56,21 @@ namespace AIProject
 
                 }
             }
+            //white pawn can advance 2 fields if it is its first move
+            else if (this.PieceTeam == true && currentPosition[1] == 1 && nextPosition[1] == 3 && currentPosition[0] == nextPosition[0] && tempBoard[currentPosition[0], 2] == null && tempBoard[currentPosition[0], 3] == null)
+            {
+                return true;
+            }
+
+            //black pawn can advance 2 fields if it is its first move
+            else if (this.PieceTeam == false && currentPosition[1] == 6 && nextPosition[1] == 4 && currentPosition[0] == nextPosition[0] && tempBoard[currentPosition[0], 5] == null && tempBoard[currentPosition[0], 4] == null)
+            {
+                return true;
+            }
+
             //did not advance straight or too much
             return false;
-        }
 
+        }
     }
 }

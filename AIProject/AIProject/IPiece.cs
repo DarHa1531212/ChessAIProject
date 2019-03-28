@@ -8,6 +8,8 @@ namespace AIProject
 {
     interface IPiece
     {
-        void MovePiece();
+        bool MovePiece(int[] currentPosition, int[] nextPosition);
+        List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int [] v1);
+
     }
 }

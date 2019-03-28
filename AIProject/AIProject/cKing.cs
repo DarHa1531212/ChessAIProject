@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AIProject
 {
- public class cKing : cPiece
+    public class King : cPiece
     {
-        public cKing(bool kingTeam) : base( kingTeam,  20)
-        {          
+        public King(bool kingTeam) : base(kingTeam, 20, 'K')
+        {
         }
-        public bool MovePiece(int[] currentPosition, int[] newPosition)
+        public override bool MovePiece(int[] currentPosition, int[] newPosition)
         {
             //moves a king can make
             if (currentPosition[0] - newPosition[0] == 1 || currentPosition[0] - newPosition[0] == -1 || currentPosition[1] - newPosition[1] == 1 || currentPosition[1] - newPosition[1] == -1)
@@ -21,6 +21,71 @@ namespace AIProject
                 else return false;
             }
             return false;
+        }
+
+        public override List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        {
+            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+            cPiece[,] tempState = new cPiece[8, 8];
+            int newX, newY;
+
+            newX = currentPosition[0] - 1;
+            newY = currentPosition[1] - 1;
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+            newX = currentPosition[0];
+            newY = currentPosition[1] - 1;
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+
+            newX = currentPosition[0] + 1;
+            newY = currentPosition[1] - 1;
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+
+            newX = currentPosition[0] - 1;
+            newY = currentPosition[1];
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+
+            newX = currentPosition[0] + 1;
+            newY = currentPosition[1];
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+            newX = currentPosition[0] - 1;
+            newY = currentPosition[1] + 1;
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+            newX = currentPosition[0];
+            newY = currentPosition[1] + 1;
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+            newX = currentPosition[0] + 1;
+            newY = currentPosition[1] + 1;
+            tempState = currentState;
+            TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
+
+
+
+            return possibleMoves;
+
+        }
+
+        private void TestValidMove(cPiece[,] currentState, int[] currentPosition, ref List<cPiece[,]> possibleMoves, cPiece[,] tempState, int newX, int newY)
+        {
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
         }
     }
 }

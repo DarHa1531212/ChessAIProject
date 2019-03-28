@@ -1,0 +1,282 @@
+﻿using System;
+using System.Text;
+using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using AIProject;
+
+
+namespace QueenTests
+{
+    [TestClass]
+    public class cQueenTests
+    {
+        [TestMethod]
+        public void TestQueenUpRightValidMove_AssertTrue()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 5;
+            newPosition[1] = 5;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+        [TestMethod]
+        public void TestQueenUpLeftValidMove_AssertTrue()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 5;
+            newPosition[1] = 1;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+        [TestMethod]
+        public void TestQueenDownLeftValidMove_AssertTrue()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 1;
+            newPosition[1] = 1;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+
+
+        [TestMethod]
+        public void TestQueenDownRightValidMove_AssertTrue()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 1;
+            newPosition[1] = 5;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+        [TestMethod]
+        public void TestQueenEatsEnemyPiece_AssertTrue()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            board[1, 1] = new Pawn(false);
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 1;
+            newPosition[1] = 1;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+        [TestMethod]
+        public void TestQueenGoingBehindEnemyPiece_AssertFalse()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            board[1, 1] = new Pawn(false);
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 0;
+            newPosition[1] = 0;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsFalse(result);
+
+        }
+
+        [TestMethod]
+        public void TestQueenEatsFreindlyPiece_AssertFalse()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            board[1, 1] = new Pawn(true);
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 1;
+            newPosition[1] = 1;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsFalse(result);
+
+        }
+
+        [TestMethod]
+        public void TestQueenGoesBeyondFriendlyPiece_AssertFalse()
+        {
+
+            //Arrange
+            cPiece[,] board = new cPiece[8, 8];
+            board[1, 1] = new Pawn(true);
+            cGameBoard myBoard = new cGameBoard(board);
+
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 0;
+            newPosition[1] = 0;
+            //Act
+            cQueen myQueen = new cQueen(true);
+            bool result = myQueen.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsFalse(result);
+
+        }
+        [TestMethod]
+        public void TestQueenMove_AssertTrue()
+        {
+            //Arrange
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 2;
+            currentPosition[1] = 3;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 2;
+            newPosition[1] = 2;
+
+            //Act
+            cQueen myKnight = new cQueen(true);
+            bool result = myKnight.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+        [TestMethod]
+        public void TestEatEnemyPiece_AssertTrue()
+        {
+            cPiece[,] board = new cPiece[8, 8];
+            board[3, 4] = new Pawn(false);
+            cGameBoard myBoard = new cGameBoard(board);
+
+            //Arrange
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 1;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 3;
+            newPosition[1] = 4;
+
+            //Act
+            cQueen myKing = new cQueen(true);
+            bool result = myKing.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsTrue(result);
+
+        }
+
+        [TestMethod]
+        public void TestMoveFurtherThanEnemyPiece_AssertFalse()
+        {
+            cPiece[,] board = new cPiece[8, 8];
+            board[3, 4] = new Pawn(false);
+            cGameBoard myBoard = new cGameBoard(board);
+
+            //Arrange
+            int[] currentPosition = new int[2];
+            currentPosition[0] = 3;
+            currentPosition[1] = 1;
+
+            int[] newPosition = new int[2];
+            newPosition[0] = 3;
+            newPosition[1] = 5;
+
+            //Act
+            cQueen myKing = new cQueen(true);
+            bool result = myKing.MovePiece(currentPosition, newPosition);
+
+            //Assert
+            Assert.IsFalse(result);
+
+        }
+
+    }
+}
+

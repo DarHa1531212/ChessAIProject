@@ -10,10 +10,12 @@ namespace AIProject
     {
         private int pieceValue;
         private bool pieceTeam;
-        public cPiece(bool team, int value)
+        public char pieceSymbol;
+        public cPiece(bool team, int value, char symbol)
         {
             pieceTeam = team;
             pieceValue = value;
+            pieceSymbol = symbol;
         }
         public bool PieceTeam
         {
@@ -24,14 +26,18 @@ namespace AIProject
             get { return this.pieceValue; }
         }
 
+        //returns true if move is valid and false if invalid
         public bool TestValidMove(int[] newPosition, int[] previousPosition, bool pieceTeam)
         {
             cPiece[,] tempBoard = new cPiece[8, 8];
             tempBoard = cGameBoard.board;
             int posX = newPosition[0];
             int posY = newPosition[1];
-            bool fieldOccupiedByFreindly = false;
-            
+
+            if (!ValidatePieceOutOfBounds(newPosition, previousPosition))
+            {
+                return false;
+            }
             // validates that there is no friendly piece at the target location
             if (tempBoard[posX, posY] != null)
             {
@@ -40,13 +46,14 @@ namespace AIProject
                 {
                     Console.WriteLine("piece's team on this field: " + tempBoard[posX, posY].pieceTeam);
                     Console.WriteLine("this piece's team: " + pieceTeam);
-                    fieldOccupiedByFreindly = true;
+                    return false;
 
                 }
             }
+            return true;
 
-            return ValidatePieceOutOfBounds(newPosition, previousPosition) && !fieldOccupiedByFreindly;
         }
+
 
         private static bool ValidatePieceOutOfBounds(int[] newPosition, int[] previousPosition)
         {
@@ -60,7 +67,16 @@ namespace AIProject
             throw new NotImplementedException();
         }
 
+        public virtual bool MovePiece(int[] v1, int[] v2)
+        {
+            throw new NotImplementedException();
+        }
 
+        public virtual List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int [] v1)
+        {
+            
+            throw new NotImplementedException();
+        }
 
     }
 }

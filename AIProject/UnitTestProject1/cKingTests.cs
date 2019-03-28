@@ -3,13 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using AIProject;
-using static AIProject.cKing;
+using static AIProject.King;
 
 
-namespace cKingTests
+namespace KingTests
 {
     [TestClass]
-    public class UnitTest1
+    public class cKingTests
     {
 
 
@@ -26,7 +26,7 @@ namespace cKingTests
             newPosition[1] = 1;
 
             //Act
-            cKing myKing = new cKing(true);
+            King myKing = new King(true);
             bool result = myKing.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -47,7 +47,7 @@ namespace cKingTests
             newPosition[1] = 1;
 
             //Act
-            cKing myKing = new cKing(true);
+            King myKing = new King(true);
             bool result = myKing.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -63,7 +63,7 @@ namespace cKingTests
             position[0] = 1;
             position[1] = 1;
             //Act
-            cKing myKing = new cKing(true);
+            King myKing = new King(true);
             bool result = myKing.MovePiece(position, position);
 
             //Assert
@@ -74,8 +74,8 @@ namespace cKingTests
         public void TestFieldOccupiedByenemyPiece_AssertTrue()
         {
             cPiece[,] board = new cPiece[8, 8];
-            board[0, 0] = new cKing(true);
-            board[1, 0] = new cKing(false);
+            board[0, 0] = new King(true);
+            board[1, 0] = new King(false);
             cGameBoard myBoard = new cGameBoard(board); 
             
             //Arrange
@@ -88,7 +88,7 @@ namespace cKingTests
             newPosition[1] = 0;
 
             //Act
-            cKing myKing = new cKing(true);
+            King myKing = new King(true);
             bool result = myKing.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -100,8 +100,8 @@ namespace cKingTests
         public void TestFieldOccupiedByFreindlyPiece_AssertFalse()
         {
             cPiece[,] board = new cPiece[8, 8];
-            board[0, 0] = new cKing(true);
-            board[1, 0] = new cKing(true);
+            board[0, 0] = new King(true);
+            board[1, 0] = new King(true);
             cGameBoard myBoard = new cGameBoard(board);
 
             //Arrange
@@ -114,7 +114,7 @@ namespace cKingTests
             newPosition[1] = 0;
 
             //Act
-            cKing myKing = new cKing(true);
+            King myKing = new King(true);
             bool result = myKing.MovePiece(currentPosition, newPosition);
 
             //Assert
