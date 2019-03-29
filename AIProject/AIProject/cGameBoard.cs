@@ -9,8 +9,7 @@ namespace AIProject
     public class cGameBoard
     {
         bool currentTurn = true;
-        bool whiteWon = false;
-        bool blackWon = false;
+
         static public cPiece[,] board = new cPiece[8, 8];
 
         public cGameBoard()
@@ -56,9 +55,6 @@ namespace AIProject
             board[6, 7] = new cKing(false);
             board[7, 7] = new cRook(false);
 
-
-
-
         }
 
         public cPiece[,] GameBoard
@@ -69,7 +65,7 @@ namespace AIProject
         public void gameLoop()
         {
             SmartAgent myAgent = new SmartAgent();
-            while (!whiteWon && !blackWon)
+            while (FindKings())
             {
                 if (currentTurn)
                 {
@@ -77,17 +73,17 @@ namespace AIProject
                 }
                 else
                 {
-                    myAgent.MiniMaxDecision(board,2,currentTurn);
+                    myAgent.MiniMaxDecision(board, 2, currentTurn);
                 }
                 currentTurn = !currentTurn;
-                FindKings();
+                
             }
 
         }
 
 
         //TODO: test this function
-        private void FindKings()
+        private bool FindKings()
         {
             bool foundWhiteKing = false;
             bool foundBlackKing = false;
@@ -95,7 +91,7 @@ namespace AIProject
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (GameBoard[i, j].pieceSymbol == 'K')
+                    if (GameBoard[i,j] != null && GameBoard[i, j].pieceSymbol == 'K')
                     {
                         if (GameBoard[i, j].PieceTeam == true)
                             foundWhiteKing = true;
@@ -104,14 +100,7 @@ namespace AIProject
                     }
                 }
             }
-            if (!foundBlackKing)
-            {
-                whiteWon = true;
-            }
-            if (!foundWhiteKing)
-            {
-                blackWon = true;
-            }
+            return foundBlackKing || foundWhiteKing;
 
         }
 

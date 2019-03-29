@@ -32,7 +32,6 @@ namespace AIProject
             newX = currentPosition[0] - 1;
             newY = currentPosition[1] - 1;
             tempState = (cPiece[,])currentState.Clone();
-            //TODO tempState = currentState but by duplicating the value, not by creating a pointer 
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
             newX = currentPosition[0];
@@ -83,8 +82,7 @@ namespace AIProject
         {
             int currentX = currentPosition[0];
             int currentY = currentPosition[1];
-            //TODO: null reference exception raised here...
-            //problem caused by the presence of a pointer when current state should be duplicated instead, just need to find where...
+
             if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam))
             {
                 tempState[newX, newY] = tempState[currentX, currentY];

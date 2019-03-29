@@ -50,6 +50,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cGameBoardTests.cs" />
     <Compile Include="cKingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="cPawnTests.cs" />

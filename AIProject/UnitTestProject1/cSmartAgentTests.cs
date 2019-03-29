@@ -10,7 +10,7 @@ namespace SmartAgentTests
     public class SmartAgentClass
     {
         [TestMethod]
-        public void testKingValidMovesList()
+        public void testKingValidMovesList_Assert8ValidMoves()
         {
             //arrange
             cPiece[,] tempBoard = new cPiece[8, 8];
@@ -32,9 +32,8 @@ namespace SmartAgentTests
         }
 
         [TestMethod]
-        public void CountUtility()
+        public void CountUtility_Assert20()
         {
-            // private int CountUtility(cPiece[,] currentState)
             
             //arrange
             cPiece[,] tempBoard = new cPiece[8, 8];
@@ -50,7 +49,8 @@ namespace SmartAgentTests
             //assert
             Assert.AreEqual(20, utility);
 
-
         }
+
+      
     }
 }
