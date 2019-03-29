@@ -30,5 +30,27 @@ namespace SmartAgentTests
 
             Assert.AreEqual(8, actions.Count);
         }
+
+        [TestMethod]
+        public void CountUtility()
+        {
+            // private int CountUtility(cPiece[,] currentState)
+            
+            //arrange
+            cPiece[,] tempBoard = new cPiece[8, 8];
+            cKing myKing = new cKing(true);
+            tempBoard[3, 3] = myKing;
+
+            SmartAgent tempAgent = new SmartAgent();
+            PrivateObject obj = new PrivateObject(tempAgent);
+
+            //act
+            int utility = (int)obj.Invoke("CountUtility", tempBoard);
+
+            //assert
+            Assert.AreEqual(20, utility);
+
+
+        }
     }
 }

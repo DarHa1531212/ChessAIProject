@@ -85,6 +85,8 @@ namespace AIProject
 
         }
 
+
+        //TODO: test this function
         private void FindKings()
         {
             bool foundWhiteKing = false;

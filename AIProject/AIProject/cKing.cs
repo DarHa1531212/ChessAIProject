@@ -31,45 +31,46 @@ namespace AIProject
 
             newX = currentPosition[0] - 1;
             newY = currentPosition[1] - 1;
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
+            //TODO tempState = currentState but by duplicating the value, not by creating a pointer 
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
             newX = currentPosition[0];
             newY = currentPosition[1] - 1;
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
 
             newX = currentPosition[0] + 1;
             newY = currentPosition[1] - 1;
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
 
             newX = currentPosition[0] - 1;
             newY = currentPosition[1];
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
 
             newX = currentPosition[0] + 1;
             newY = currentPosition[1];
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
             newX = currentPosition[0] - 1;
             newY = currentPosition[1] + 1;
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
             newX = currentPosition[0];
             newY = currentPosition[1] + 1;
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
             newX = currentPosition[0] + 1;
             newY = currentPosition[1] + 1;
-            tempState = currentState;
+            tempState = (cPiece[,])currentState.Clone();
             TestValidMove(currentState, currentPosition, ref possibleMoves, tempState, newX, newY);
 
 
