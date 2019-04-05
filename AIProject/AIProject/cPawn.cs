@@ -7,17 +7,19 @@
 // </copyright>
 //-----------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
+
 namespace AIProject
 {
     public class Pawn : cPiece
     {
-        public Pawn(bool pawnTeam) : base(pawnTeam, 1,'P')
+        public Pawn(bool pawnTeam) : base(pawnTeam, 1, 'P')
         {
         }
 
         public override bool MovePiece(int[] currentPosition, int[] newPosition)
         {
-            if (ValidatePawnMove(currentPosition, newPosition))
+            if (ValidatePawnMove(currentPosition, newPosition, null))
             {
                 if (TestValidMove(newPosition, currentPosition, this.PieceTeam))
                     return true;
@@ -27,13 +29,14 @@ namespace AIProject
 
         }
 
-        private bool ValidatePawnMove(int[] currentPosition, int[] nextPosition)
+        private bool ValidatePawnMove(int[] currentPosition, int[] nextPosition, cPiece[,] tempBoard)
         {
-            cPiece[,] tempBoard = new cPiece[8, 8];
+            if (tempBoard == null)
+                tempBoard = cGameBoard.board;
+
             int posX = nextPosition[0];
             int posY = nextPosition[1];
 
-            tempBoard = cGameBoard.board;
 
 
             //advanced in the right direction
@@ -41,7 +44,7 @@ namespace AIProject
             {
                 //advanced straight
                 /*sould this not be != */
-                if (currentPosition[0] == nextPosition[0] && tempBoard[posX,posY] ==  null)
+                if (currentPosition[0] == nextPosition[0] && tempBoard[posX, posY] == null)
                 {
                     return true;
                 }
@@ -50,7 +53,7 @@ namespace AIProject
                 {
 
 
-                    if (tempBoard[posX, posY].PieceTeam != PieceTeam)
+                    if (tempBoard[posX, posY] != null && tempBoard[posX, posY].PieceTeam != PieceTeam)
                     { return true; }
                     else { return false; }
 
@@ -72,5 +75,66 @@ namespace AIProject
             return false;
 
         }
+
+        public override List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        {
+            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+            cPiece[,] tempState = new cPiece[8, 8];
+            int newX, newY;
+
+            if (PieceTeam == true)
+            {
+                newX = currentPosition[0];
+                newY = currentPosition[1];
+                newY++;
+                if (ValidatePawnMove(currentPosition, new[] { newX, newY }, currentState))
+                {
+                    tempState = (cPiece[,])currentState.Clone();
+                    tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[currentPosition[0], currentPosition[1]] = null;
+                    possibleMoves.Add(tempState);
+                }
+
+                if (ValidatePawnMove(currentPosition, new[] { newX + 1, newY }, currentState))
+                {
+                    tempState = (cPiece[,])currentState.Clone();
+                    tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[currentPosition[0], currentPosition[1]] = null;
+                    possibleMoves.Add(tempState);
+                }
+
+                if (ValidatePawnMove(currentPosition, new[] { newX - 1, newY }, currentState))
+                {
+                    tempState = (cPiece[,])currentState.Clone();
+                    tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[currentPosition[0], currentPosition[1]] = null;
+                    possibleMoves.Add(tempState);
+                }
+
+                if (ValidatePawnMove(currentPosition, new[] { newX, newY + 1 }, currentState))
+                {
+                    tempState = (cPiece[,])currentState.Clone();
+                    tempState[newX, newY + 1] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[currentPosition[0], currentPosition[1]] = null;
+                    possibleMoves.Add(tempState);
+                }
+            }
+
+            return possibleMoves;
+
+        }
+        private void TestValidMove(cPiece[,] currentState, int[] currentPosition, ref List<cPiece[,]> possibleMoves, cPiece[,] tempState, int newX, int newY)
+        {
+            int currentX = currentPosition[0];
+            int currentY = currentPosition[1];
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam))
+            {
+                tempState[newX, newY] = tempState[currentX, currentY];
+                tempState[currentX, currentY] = null;
+                possibleMoves.Add(tempState);
+            }
+        }
+
     }
 }

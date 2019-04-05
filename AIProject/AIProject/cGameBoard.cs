@@ -80,9 +80,6 @@ namespace AIProject
             }
 
         }
-
-
-        //TODO: test this function
         private bool FindKings()
         {
             bool foundWhiteKing = false;
@@ -157,11 +154,6 @@ namespace AIProject
                 Console.WriteLine("select Y axis of destination");
                 nextY = Convert.ToInt32(Console.ReadLine());
 
-                //left, top
-                /*Console.SetCursorPosition(12 + 2 * currentY, 3 + currentX);
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write(board[currentX, currentY].pieceSymbol);
-                Console.SetCursorPosition(0, 20);*/
 
             }
             while (!ValidateFieldAndPiece(currentX, currentY, nextX, nextY));

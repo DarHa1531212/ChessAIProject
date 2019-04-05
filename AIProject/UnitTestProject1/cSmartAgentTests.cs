@@ -20,10 +20,6 @@ namespace SmartAgentTests
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
-            //ListAllPossibleActions(cPiece[,] currentState, bool currentPlayer)
-
-
-
             //act
             List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
             //assert
@@ -34,7 +30,7 @@ namespace SmartAgentTests
         [TestMethod]
         public void CountUtility_Assert20()
         {
-            
+
             //arrange
             cPiece[,] tempBoard = new cPiece[8, 8];
             cKing myKing = new cKing(true);
@@ -51,6 +47,28 @@ namespace SmartAgentTests
 
         }
 
-      
+        [TestMethod]
+        public void ListPawnValidMoves_Assert3()
+        {
+            //arrange
+            cPiece[,] tempBoard = new cPiece[8, 8];
+            Pawn myPawn = new Pawn(true);
+            Pawn blackPawn = new Pawn(false);
+            tempBoard[2, 1] = myPawn;
+            tempBoard[1, 2] = blackPawn;
+            SmartAgent tempAgent = new SmartAgent();
+            PrivateObject obj = new PrivateObject(tempAgent);
+
+            
+            //act
+            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+
+
+            //assert
+
+            Assert.AreEqual(3, actions.Count);
+        }
+
+
     }
 }
