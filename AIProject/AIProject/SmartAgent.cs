@@ -9,8 +9,49 @@ namespace AIProject
     public class SmartAgent
     {
         List<cPiece[,]> validMoves = new List<cPiece[,]>();
-        public void MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer)
+        public cPiece[,] MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer)
         {
+
+            List<cPiece[,]> possibeActions;
+            cPiece[,] bestAction = new cPiece[8,8];
+            List<int> possibleActionsEvaluation = new List<int>();
+            if (depth == 0)
+                return currentState;
+
+            //white plays
+            else if (currentPlayer)
+            {
+                int maxEval = -999;
+                possibeActions = ListAllPossibleActions(currentState, currentPlayer);
+                foreach (var v in possibeActions)
+                {
+                    //  possibleActionsEvaluation.Add
+                    if (CountUtility(v) > maxEval)
+                    {
+                        maxEval = CountUtility(v);
+                        bestAction = v;
+                    }
+                }
+                return bestAction;
+
+            }
+
+            else
+            {
+                int maxEval = 999;
+                possibeActions = ListAllPossibleActions(currentState, currentPlayer);
+                foreach (var v in possibeActions)
+                {
+                    //  possibleActionsEvaluation.Add
+                    if (CountUtility(v) < maxEval)
+                    {
+                        maxEval = CountUtility(v);
+                        bestAction = v;
+                    }
+                }
+                return bestAction;
+            }
+            
             //return max actions valeursMin(resultata(etat,a))
         }
         private int ValueMax()

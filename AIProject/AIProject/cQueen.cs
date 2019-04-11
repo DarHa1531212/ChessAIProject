@@ -29,5 +29,16 @@ namespace AIProject
             return ListAllRookMoves(currentPosition, newPosition);
         }
 
+        public override List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        {
+            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+
+            possibleMoves.AddRange(GetAllValidBishopMoves(currentState, currentPosition));
+            possibleMoves.AddRange(GetAllValidRookMoves(currentState, currentPosition));
+
+            return possibleMoves;
+        }
+
+
     }
 }

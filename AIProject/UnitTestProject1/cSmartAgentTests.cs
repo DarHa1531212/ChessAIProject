@@ -59,7 +59,7 @@ namespace SmartAgentTests
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
-            
+
             //act
             List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
@@ -164,5 +164,24 @@ namespace SmartAgentTests
             Assert.AreEqual(14, actions.Count);
 
         }
+
+        [TestMethod]
+        public void CountAllQueenValidMoves_Assert27()
+        {
+            //arrange
+            cPiece[,] tempBoard = new cPiece[8, 8];
+            cQueen myQueen = new cQueen(true);
+            tempBoard[3, 3] = myQueen;
+            SmartAgent tempAgent = new SmartAgent();
+            PrivateObject obj = new PrivateObject(tempAgent);
+
+            //act
+            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+
+            //assert
+            Assert.AreEqual(27, actions.Count);
+
+        }
+
     }
 }
