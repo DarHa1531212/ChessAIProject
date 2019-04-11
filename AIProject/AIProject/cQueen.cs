@@ -24,13 +24,9 @@ namespace AIProject
             return base.ListAllBishopMoves(currentPosition, newPosition);
         }
 
-       
-
-
-
         private bool RookMoves(int[] currentPosition, int[] newPosition)
         {
-            return GetAllRookMoves(currentPosition, newPosition);
+            return ListAllRookMoves(currentPosition, newPosition);
         }
 
     }

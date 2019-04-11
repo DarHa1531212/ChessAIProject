@@ -15,5 +15,11 @@ namespace AIProject
         {
            return base.ListAllBishopMoves(currentPosition, newPosition);
         }
+
+        public override List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        {
+            return base.GetAllValidBishopMoves(currentState, currentPosition);
+        }
+
     }
 }

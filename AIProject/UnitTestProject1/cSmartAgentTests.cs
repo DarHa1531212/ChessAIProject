@@ -103,10 +103,8 @@ namespace SmartAgentTests
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
-
             //act
             List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, false);
-
 
             //assert
 
@@ -114,23 +112,56 @@ namespace SmartAgentTests
         }
 
         [TestMethod]
-        public void CountAllKnightValidMoves_Assert7()
+        public void CountAllKnightValidMoves_Assert8()
         {
             //arrange
             cPiece[,] tempBoard = new cPiece[8, 8];
             cKnight myKnight = new cKnight(true);
-            Pawn myWhitePawn = new Pawn(true);
             tempBoard[3, 3] = myKnight;
-            tempBoard[1, 2] = myWhitePawn;
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
             List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
+            //assert
+            Assert.AreEqual(8, actions.Count);
 
-            //assert should be 7
-            Assert.AreEqual(1, actions.Count);
+        }
+
+        [TestMethod]
+        public void CountAllBishopValidMoves_Assert13()
+        {
+            //arrange
+            cPiece[,] tempBoard = new cPiece[8, 8];
+            cBishop myBishop = new cBishop(true);
+            tempBoard[3, 3] = myBishop;
+            SmartAgent tempAgent = new SmartAgent();
+            PrivateObject obj = new PrivateObject(tempAgent);
+
+            //act
+            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+
+            //assert
+            Assert.AreEqual(13, actions.Count);
+
+        }
+
+        [TestMethod]
+        public void CountAllRookValidMoves_Assert14()
+        {
+            //arrange
+            cPiece[,] tempBoard = new cPiece[8, 8];
+            cRook myRook = new cRook(true);
+            tempBoard[3, 3] = myRook;
+            SmartAgent tempAgent = new SmartAgent();
+            PrivateObject obj = new PrivateObject(tempAgent);
+
+            //act
+            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+
+            //assert
+            Assert.AreEqual(14, actions.Count);
 
         }
     }

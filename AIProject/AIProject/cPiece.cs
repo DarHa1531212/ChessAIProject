@@ -89,7 +89,7 @@ namespace AIProject
             throw new NotImplementedException();
         }
 
-        public bool GetAllRookMoves(int[] currentPosition, int[] newPosition)
+        public bool ListAllRookMoves(int[] currentPosition, int[] newPosition)
         {
             List<int[]> validMoves = new List<int[]>();
             cPiece[,] tempBoard = new cPiece[8, 8];
@@ -178,8 +178,6 @@ namespace AIProject
 
             return false;
         }
-
-
 
         public bool ListAllBishopMoves(int[] currentPosition, int[] newPosition)
         {
@@ -274,6 +272,180 @@ namespace AIProject
 
             return false;
         }
+
+        public List<cPiece[,]> GetAllValidBishopMoves(cPiece[,] currentState, int[] currentPosition)
+        {
+            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+            cPiece[,] tempState = new cPiece[8, 8];
+            int newX, newY;
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newX++;
+            newY++;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newX++;
+                newY++;
+
+            }
+
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newX++;
+            newY--;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newX++;
+                newY--;
+
+            }
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newX--;
+            newY++;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newX--;
+                newY++;
+
+            }
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newX--;
+            newY--;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newX--;
+                newY--;
+
+            }
+
+            return possibleMoves;
+        }
+
+        public List<cPiece[,]> GetAllValidRookMoves(cPiece[,] currentState, int[] currentPosition)
+        {
+            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+            cPiece[,] tempState = new cPiece[8, 8];
+            int newX, newY;
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newX++;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newX++;
+
+            }
+
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newY++;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newY++;
+
+            }
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newX--;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newX--;
+
+            }
+
+            newX = currentPosition[0];
+            newY = currentPosition[1];
+
+            tempState = (cPiece[,])currentState.Clone();
+            newY--;
+
+            while (TestValidMove(new[] { newX, newY }, currentPosition, PieceTeam, currentState))
+            {
+                tempState = (cPiece[,])currentState.Clone();
+
+
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+                newY--;
+
+            }
+
+            return possibleMoves;
+        }
+
+
 
     }
 }

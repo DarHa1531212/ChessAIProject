@@ -13,7 +13,12 @@ namespace AIProject
 
         public override bool MovePiece(int[] currentPosition, int[] newPosition)
         {
-            return GetAllRookMoves(currentPosition, newPosition);
+            return ListAllRookMoves(currentPosition, newPosition);
+        }
+
+        public override List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        {
+            return base.GetAllValidRookMoves(currentState, currentPosition);
         }
 
     }

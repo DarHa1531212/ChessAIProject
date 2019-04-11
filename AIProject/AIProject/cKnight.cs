@@ -12,7 +12,7 @@ namespace AIProject
         {
         }
 
-        private List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        public override List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
         {
             List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
             cPiece[,] tempState = new cPiece[8, 8];
@@ -21,23 +21,97 @@ namespace AIProject
             newX = currentPosition[0] - 1;
             newY = currentPosition[1] - 2;
             tempState = (cPiece[,])currentState.Clone();
-            TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState);
-            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, null))
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
             {
-                tempState[newX, newY] = tempState[newX, newY];
-                tempState[newX, newY] = null;
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
                 possibleMoves.Add(tempState);
             }
 
-            /* if (
-            (newPosition[1] == currentPosition[1] - 2 && newPosition[0] == currentPosition[0] - 1) ||
-            (newPosition[1] == currentPosition[1] - 2 && newPosition[0] == currentPosition[0] + 1) ||
-            (newPosition[1] == currentPosition[1] + 2 && newPosition[0] == currentPosition[0] - 1) ||
-            (newPosition[1] == currentPosition[1] + 2 && newPosition[0] == currentPosition[0] + 1) ||
-            (newPosition[0] == currentPosition[0] + 2 && newPosition[1] == currentPosition[1] - 1) ||
-            (newPosition[0] == currentPosition[0] + 2 && newPosition[1] == currentPosition[1] + 1) ||
-            (newPosition[0] == currentPosition[0] - 2 && newPosition[1] == currentPosition[1] - 1) ||
-            (newPosition[0] == currentPosition[0] - 2 && newPosition[1] == currentPosition[1] + 1))*/
+
+            newX = currentPosition[0] + 1;
+            newY = currentPosition[1] - 2;
+            tempState = (cPiece[,])currentState.Clone();
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
+
+            newX = currentPosition[0] - 1;
+            newY = currentPosition[1] + 2;
+            tempState = (cPiece[,])currentState.Clone();
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
+
+            newX = currentPosition[0] + 1;
+            newY = currentPosition[1] + 2;
+            tempState = (cPiece[,])currentState.Clone();
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
+
+
+            newX = currentPosition[0] + 2;
+            newY = currentPosition[1] - 1;
+            tempState = (cPiece[,])currentState.Clone();
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
+
+
+            newX = currentPosition[0] + 2;
+            newY = currentPosition[1] + 1;
+            tempState = (cPiece[,])currentState.Clone();
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
+
+
+
+            newX = currentPosition[0] - 2;
+            newY = currentPosition[1] - 1;
+            tempState = (cPiece[,])currentState.Clone();
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
+
+
+            newX = currentPosition[0] - 2;
+            newY = currentPosition[1] + 1;
+            tempState = (cPiece[,])currentState.Clone();
+
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, currentState))
+            {
+                tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                tempState[currentPosition[0], currentPosition[1]] = null;
+                possibleMoves.Add(tempState);
+            }
+
 
             return possibleMoves;
 
