@@ -16,7 +16,7 @@ namespace AIProject
             //moves a king can make
             if (currentPosition[0] - newPosition[0] == 1 || currentPosition[0] - newPosition[0] == -1 || currentPosition[1] - newPosition[1] == 1 || currentPosition[1] - newPosition[1] == -1)
             {
-                if (TestValidMove(newPosition, currentPosition, this.PieceTeam))
+                if (TestValidMove(newPosition, currentPosition, this.PieceTeam, null))
                     return true;
                 else return false;
             }
@@ -83,7 +83,7 @@ namespace AIProject
             int currentX = currentPosition[0];
             int currentY = currentPosition[1];
 
-            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam))
+            if (TestValidMove(new[] { newX, newY }, currentPosition, currentState[currentPosition[0], currentPosition[1]].PieceTeam, null))
             {
                 tempState[newX, newY] = tempState[currentX, currentY];
                 tempState[currentX, currentY] = null;

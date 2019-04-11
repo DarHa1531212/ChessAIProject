@@ -27,10 +27,21 @@ namespace AIProject
         }
 
         //returns true if move is valid and false if invalid
-        public bool TestValidMove(int[] newPosition, int[] previousPosition, bool pieceTeam)
+        public bool TestValidMove(int[] newPosition, int[] previousPosition, bool pieceTeam, cPiece[,] currentState)
         {
             cPiece[,] tempBoard = new cPiece[8, 8];
-            tempBoard = cGameBoard.board;
+
+            if (currentState == null)
+            {
+                tempBoard = cGameBoard.board;
+            }
+            else
+
+            {
+                tempBoard = currentState;
+            }
+                
+            
             int posX = newPosition[0];
             int posY = newPosition[1];
 
@@ -91,7 +102,7 @@ namespace AIProject
             testingPosition[0] = currentPosition[0] + 1;
             testingPosition[1] = currentPosition[1];
 
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
 
                 tempVal[0] = testingPosition[0];
@@ -108,7 +119,7 @@ namespace AIProject
 
             testingPosition[0] = currentPosition[0] - 1;
             testingPosition[1] = currentPosition[1];
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
                 tempVal[0] = testingPosition[0];
                 tempVal[1] = currentPosition[1];
@@ -125,7 +136,7 @@ namespace AIProject
 
             testingPosition[1] = currentPosition[1] + 1;
             testingPosition[0] = currentPosition[0];
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
                 tempVal[1] = testingPosition[1];
                 tempVal[0] = currentPosition[0];
@@ -142,7 +153,7 @@ namespace AIProject
 
             testingPosition[1] = currentPosition[1] - 1;
             testingPosition[0] = currentPosition[0];
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
                 tempVal[1] = testingPosition[1];
                 tempVal[0] = currentPosition[0];
@@ -183,7 +194,7 @@ namespace AIProject
             testingPosition[0] = currentPosition[0] + 1;
             testingPosition[1] = currentPosition[1] + 1;
 
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
 
                 tempVal[0] = testingPosition[0];
@@ -201,7 +212,7 @@ namespace AIProject
 
             testingPosition[0] = currentPosition[0] + 1;
             testingPosition[1] = currentPosition[1] - 1;
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
                 tempVal[0] = testingPosition[0];
                 tempVal[1] = testingPosition[1];
@@ -219,7 +230,7 @@ namespace AIProject
 
             testingPosition[0] = currentPosition[0] - 1;
             testingPosition[1] = currentPosition[1] + 1;
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
                 tempVal[0] = testingPosition[0];
                 tempVal[1] = testingPosition[1];
@@ -237,7 +248,7 @@ namespace AIProject
 
             testingPosition[1] = currentPosition[1] - 1;
             testingPosition[0] = currentPosition[0] - 1;
-            while (TestValidMove(testingPosition, currentPosition, PieceTeam))
+            while (TestValidMove(testingPosition, currentPosition, PieceTeam, null))
             {
                 tempVal[1] = testingPosition[1];
                 tempVal[0] = testingPosition[0];
