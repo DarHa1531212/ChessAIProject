@@ -25,7 +25,7 @@ namespace GameBoardTests
 
 
             PrivateObject obj = new PrivateObject(myGameBoard);
-            bool a = true;
+            bool a = false;
 
             //act
             bool utility = (bool)obj.Invoke("FindKings");

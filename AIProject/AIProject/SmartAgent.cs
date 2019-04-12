@@ -9,14 +9,14 @@ namespace AIProject
     public class SmartAgent
     {
         List<cPiece[,]> validMoves = new List<cPiece[,]>();
-        public cPiece[,] MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer)
+        public cPotentialMove MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer)
         {
 
-            List<cPiece[,]> possibeActions;
-            cPiece[,] bestAction = new cPiece[8,8];
+            List<cPotentialMove> possibeActions;
+            cPotentialMove bestAction = new cPotentialMove(null,null,null);
             List<int> possibleActionsEvaluation = new List<int>();
             if (depth == 0)
-                return currentState;
+                return new cPotentialMove(null, null, currentState);
 
             //white plays
             else if (currentPlayer)
@@ -25,28 +25,30 @@ namespace AIProject
                 possibeActions = ListAllPossibleActions(currentState, currentPlayer);
                 foreach (var v in possibeActions)
                 {
+                    cPotentialMove eval = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer);
                     //  possibleActionsEvaluation.Add
-                    if (CountUtility(v) > maxEval)
+                    if (CountUtility(eval.CurrentState) > maxEval)
                     {
-                        maxEval = CountUtility(v);
-                        bestAction = v;
+                        bestAction = eval;
+                        maxEval = CountUtility(eval.CurrentState);
+
                     }
                 }
                 return bestAction;
-
             }
 
             else
             {
-                int maxEval = 999;
+                int minEval = 999;
                 possibeActions = ListAllPossibleActions(currentState, currentPlayer);
                 foreach (var v in possibeActions)
                 {
+                    cPotentialMove eval = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer);
                     //  possibleActionsEvaluation.Add
-                    if (CountUtility(v) < maxEval)
+                    if (CountUtility(eval.CurrentState) < minEval)
                     {
-                        maxEval = CountUtility(v);
-                        bestAction = v;
+                        minEval = CountUtility(v.CurrentState);
+                        bestAction = eval;
                     }
                 }
                 return bestAction;
@@ -94,16 +96,16 @@ namespace AIProject
             return sum;
         }
 
-        private List<cPiece[,]> ListAllPossibleActions(cPiece[,] currentState, bool currentPlayer)
+        private List<cPotentialMove> ListAllPossibleActions(cPiece[,] currentState, bool currentPlayer)
         {
-            List<cPiece[,]> possibeActions = new List<cPiece[,]>();
+            List<cPotentialMove> possibeActions = new List<cPotentialMove>();
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
                     if (currentState[i, j] != null && currentState[i, j].PieceTeam == currentPlayer)
                     {
-                        List<cPiece[,]> actionsList = currentState[i, j].GetAllValidMoves(currentState, new[] { i, j });
+                        List<cPotentialMove> actionsList = currentState[i, j].GetAllValidMoves(currentState, new[] { i, j });
                         foreach (var v in actionsList)
                         {
                             possibeActions.Add(v);

@@ -40,8 +40,8 @@ namespace AIProject
             {
                 tempBoard = currentState;
             }
-                
-            
+
+
             int posX = newPosition[0];
             int posY = newPosition[1];
 
@@ -52,13 +52,9 @@ namespace AIProject
             // validates that there is no friendly piece at the target location
             if (tempBoard[posX, posY] != null)
             {
-                Console.WriteLine("field is not null");
                 if (tempBoard[posX, posY].pieceTeam == pieceTeam)
                 {
-                    Console.WriteLine("piece's team on this field: " + tempBoard[posX, posY].pieceTeam);
-                    Console.WriteLine("this piece's team: " + pieceTeam);
                     return false;
-
                 }
             }
             return true;
@@ -83,9 +79,9 @@ namespace AIProject
             throw new NotImplementedException();
         }
 
-        public virtual List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int [] v1)
+        public virtual List<cPotentialMove> GetAllValidMoves(cPiece[,] currentState, int[] v1)
         {
-            
+
             throw new NotImplementedException();
         }
 
@@ -273,9 +269,9 @@ namespace AIProject
             return false;
         }
 
-        public List<cPiece[,]> GetAllValidBishopMoves(cPiece[,] currentState, int[] currentPosition)
+        public List<cPotentialMove> GetAllValidBishopMoves(cPiece[,] currentState, int[] currentPosition)
         {
-            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+            List<cPotentialMove> possibleMoves = new List<cPotentialMove>();
             cPiece[,] tempState = new cPiece[8, 8];
             int newX, newY;
 
@@ -293,9 +289,10 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX , newY }, tempState));
                 newX++;
                 newY++;
+
 
             }
 
@@ -314,7 +311,7 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
                 newX++;
                 newY--;
 
@@ -334,7 +331,7 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
                 newX--;
                 newY++;
 
@@ -354,7 +351,7 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
                 newX--;
                 newY--;
 
@@ -363,9 +360,9 @@ namespace AIProject
             return possibleMoves;
         }
 
-        public List<cPiece[,]> GetAllValidRookMoves(cPiece[,] currentState, int[] currentPosition)
+        public List<cPotentialMove> GetAllValidRookMoves(cPiece[,] currentState, int[] currentPosition)
         {
-            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+            List<cPotentialMove> possibleMoves = new List<cPotentialMove>();
             cPiece[,] tempState = new cPiece[8, 8];
             int newX, newY;
 
@@ -382,7 +379,7 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
                 newX++;
 
             }
@@ -401,7 +398,7 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
                 newY++;
 
             }
@@ -419,7 +416,7 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
                 newX--;
 
             }
@@ -437,7 +434,7 @@ namespace AIProject
 
                 tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
                 tempState[currentPosition[0], currentPosition[1]] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
                 newY--;
 
             }

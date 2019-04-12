@@ -23,9 +23,9 @@ namespace AIProject
             return false;
         }
 
-        public override List<cPiece[,]> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        public override List<cPotentialMove> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
         {
-            List<cPiece[,]> possibleMoves = new List<cPiece[,]>();
+            List<cPotentialMove> possibleMoves = new List<cPotentialMove>();
             cPiece[,] tempState = new cPiece[8, 8];
             int newX, newY;
 
@@ -78,7 +78,7 @@ namespace AIProject
 
         }
 
-        private void TestValidMove(cPiece[,] currentState, int[] currentPosition, ref List<cPiece[,]> possibleMoves, cPiece[,] tempState, int newX, int newY)
+        private void TestValidMove(cPiece[,] currentState, int[] currentPosition, ref List<cPotentialMove> possibleMoves, cPiece[,] tempState, int newX, int newY)
         {
             int currentX = currentPosition[0];
             int currentY = currentPosition[1];
@@ -87,7 +87,7 @@ namespace AIProject
             {
                 tempState[newX, newY] = tempState[currentX, currentY];
                 tempState[currentX, currentY] = null;
-                possibleMoves.Add(tempState);
+                possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY }, tempState));
             }
         }
     }

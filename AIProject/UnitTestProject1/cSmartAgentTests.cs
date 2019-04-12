@@ -21,7 +21,7 @@ namespace SmartAgentTests
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
             //assert
 
             Assert.AreEqual(8, actions.Count);
@@ -61,7 +61,7 @@ namespace SmartAgentTests
 
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
 
             //assert
@@ -83,7 +83,7 @@ namespace SmartAgentTests
 
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
 
             //assert
@@ -104,7 +104,7 @@ namespace SmartAgentTests
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, false);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, false);
 
             //assert
 
@@ -122,7 +122,7 @@ namespace SmartAgentTests
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(8, actions.Count);
@@ -140,7 +140,7 @@ namespace SmartAgentTests
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(13, actions.Count);
@@ -158,7 +158,7 @@ namespace SmartAgentTests
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(14, actions.Count);
@@ -176,7 +176,7 @@ namespace SmartAgentTests
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPiece[,]> actions = (List<cPiece[,]>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(27, actions.Count);

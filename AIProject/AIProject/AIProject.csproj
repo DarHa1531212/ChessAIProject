@@ -49,6 +49,7 @@
     <Compile Include="cKnight.cs" />
     <Compile Include="cPawn.cs" />
     <Compile Include="cPiece.cs" />
+    <Compile Include="cPotentialMove.cs" />
     <Compile Include="cQueen.cs" />
     <Compile Include="cRook.cs" />
     <Compile Include="IPiece.cs" />

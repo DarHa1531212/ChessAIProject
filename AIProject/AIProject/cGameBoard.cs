@@ -32,12 +32,12 @@ namespace AIProject
             }
 
             board[0, 0] = new cRook(true);
-            board[1, 0] = new cKing(true);
+            board[1, 0] = new cKnight(true);
             board[2, 0] = new cBishop(true);
             board[3, 0] = new cQueen(true);
             board[4, 0] = new cKing(true);
             board[5, 0] = new cBishop(true);
-            board[6, 0] = new cKing(true);
+            board[6, 0] = new cKnight(true);
             board[7, 0] = new cRook(true);
 
             for (int i = 0; i < 8; i++)
@@ -47,12 +47,12 @@ namespace AIProject
             }
 
             board[0, 7] = new cRook(false);
-            board[1, 7] = new cKing(false);
+            board[1, 7] = new cKnight(false);
             board[2, 7] = new cBishop(false);
             board[3, 7] = new cQueen(false);
             board[4, 7] = new cKing(false);
             board[5, 7] = new cBishop(false);
-            board[6, 7] = new cKing(false);
+            board[6, 7] = new cKnight(false);
             board[7, 7] = new cRook(false);
 
         }
@@ -64,20 +64,28 @@ namespace AIProject
 
         public void gameLoop()
         {
+            DisplayGameBoard();
             SmartAgent myAgent = new SmartAgent();
             while (FindKings())
             {
+
                 if (currentTurn)
                 {
-                    PlayTurn();
+                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 3, currentTurn);
+                    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
+
+                    //PlayTurn();
                 }
                 else
                 {
-                    myAgent.MiniMaxDecision(board, 2, currentTurn);
+                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 3, currentTurn);
+                    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
+
                 }
                 currentTurn = !currentTurn;
-                
+                DisplayGameBoard();
             }
+            DisplayGameBoard();
 
         }
         private bool FindKings()
@@ -88,7 +96,7 @@ namespace AIProject
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (GameBoard[i,j] != null && GameBoard[i, j].pieceSymbol == 'K')
+                    if (GameBoard[i, j] != null && GameBoard[i, j].pieceSymbol == 'K')
                     {
                         if (GameBoard[i, j].PieceTeam == true)
                             foundWhiteKing = true;
@@ -97,7 +105,7 @@ namespace AIProject
                     }
                 }
             }
-            return foundBlackKing || foundWhiteKing;
+            return foundBlackKing && foundWhiteKing;
 
         }
 
@@ -112,11 +120,11 @@ namespace AIProject
                 Console.Write(i + "|");
                 for (int j = 0; j < 8; j++)
                 {
-                    if (board[j, i] == null)
+                    if (board[i, j] == null)
                         Console.Write("*|");
                     else
                     {
-                        if (board[j, i].PieceTeam == true)
+                        if (board[i, j].PieceTeam == true)
                         {
                             Console.ForegroundColor = ConsoleColor.Green;
                         }
@@ -125,7 +133,15 @@ namespace AIProject
                             Console.ForegroundColor = ConsoleColor.Red;
                         }
 
-                        Console.Write(board[i, j].pieceSymbol);
+                        if (board[i, j] != null)
+                        {
+                            Console.Write(board[i, j].pieceSymbol);
+                        }
+                        else
+                        {
+                            Console.WriteLine(" ");
+                        }
+
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("|");
                     }
