@@ -9,6 +9,7 @@ namespace AIProject
     public class cGameBoard
     {
         bool currentTurn = true;
+        int turnCount = 0;
 
         static public cPiece[,] board = new cPiece[8, 8];
 
@@ -64,21 +65,25 @@ namespace AIProject
 
         public void gameLoop()
         {
+            
             DisplayGameBoard();
             SmartAgent myAgent = new SmartAgent();
             while (FindKings())
             {
+                turnCount++;
+                Console.WriteLine("Current turn: " + turnCount + ". Hit a key to continue");
+                //Console.ReadLine();
 
                 if (currentTurn)
                 {
-                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 3, currentTurn);
+                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 4, currentTurn,null, null);
                     ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
 
                     //PlayTurn();
                 }
                 else
                 {
-                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 3, currentTurn);
+                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 4, currentTurn, null, null);
                     ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
 
                 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace AIProject
 {
-   public class cPotentialMove
+    public class cPotentialMove
     {
-        public int[] PreviousPosition { get; }
-        public int[] NewPosition { get; }
-        public cPiece[,] CurrentState { get; }
+        public int[] PreviousPosition { get; set; }
+        public int[] NewPosition { get; set; }
+        public cPiece[,] CurrentState { get; set; }
 
-       public cPotentialMove(int[] previousPosition, int[] newPosition, cPiece[,] board )
+        public cPotentialMove(int[] previousPosition, int[] newPosition, cPiece[,] board)
         {
             PreviousPosition = previousPosition;
             NewPosition = newPosition;

@@ -9,14 +9,14 @@ namespace AIProject
     public class SmartAgent
     {
         List<cPiece[,]> validMoves = new List<cPiece[,]>();
-        public cPotentialMove MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer)
+        public cPotentialMove MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer, int[] previousPosition, int[] newPosition)
         {
 
             List<cPotentialMove> possibeActions;
-            cPotentialMove bestAction = new cPotentialMove(null,null,null);
+            cPotentialMove bestAction = new cPotentialMove(previousPosition, newPosition, currentState);
             List<int> possibleActionsEvaluation = new List<int>();
             if (depth == 0)
-                return new cPotentialMove(null, null, currentState);
+                return new cPotentialMove(previousPosition, newPosition, currentState);
 
             //white plays
             else if (currentPlayer)
@@ -25,11 +25,14 @@ namespace AIProject
                 possibeActions = ListAllPossibleActions(currentState, currentPlayer);
                 foreach (var v in possibeActions)
                 {
-                    cPotentialMove eval = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer);
+                    cPotentialMove eval = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition,v.NewPosition);
                     //  possibleActionsEvaluation.Add
                     if (CountUtility(eval.CurrentState) > maxEval)
                     {
-                        bestAction = eval;
+                        bestAction = v;
+                        //bestAction = eval;
+                        //bestAction.NewPosition = newPosition;
+                       // bestAction.PreviousPosition = previousPosition;
                         maxEval = CountUtility(eval.CurrentState);
 
                     }
@@ -43,33 +46,19 @@ namespace AIProject
                 possibeActions = ListAllPossibleActions(currentState, currentPlayer);
                 foreach (var v in possibeActions)
                 {
-                    cPotentialMove eval = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer);
+                    cPotentialMove eval = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer,v.PreviousPosition,v.NewPosition);
                     //  possibleActionsEvaluation.Add
                     if (CountUtility(eval.CurrentState) < minEval)
                     {
                         minEval = CountUtility(v.CurrentState);
-                        bestAction = eval;
+                        //bestAction = eval;
+                        //bestAction.NewPosition = newPosition;
+                        //bestAction.PreviousPosition = previousPosition;
+                        bestAction = v;
                     }
                 }
                 return bestAction;
             }
-            
-            //return max actions valeursMin(resultata(etat,a))
-        }
-        private int ValueMax()
-        {
-            int v;
-            //si test terminal (profondeur 2)
-            return v = -99;
-            //sinon
-            //return best action from list
-
-        }
-
-        private void ValueMin()
-        {
-            //if profondeur 2, retourner -99
-            //else return best action from list
         }
 
         private int CountUtility(cPiece[,] currentState)
@@ -90,7 +79,6 @@ namespace AIProject
                             sum -= currentState[i, j].PieceValue;
                         }
                     }
-
                 }
             }
             return sum;
@@ -113,7 +101,6 @@ namespace AIProject
                     }
                 }
             }
-
 
             return possibeActions;
         }
