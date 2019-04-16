@@ -65,30 +65,35 @@ namespace AIProject
 
         public void gameLoop()
         {
-            
+
             DisplayGameBoard();
             SmartAgent myAgent = new SmartAgent();
             while (FindKings())
             {
                 turnCount++;
-                Console.WriteLine("Current turn: " + turnCount + ". Hit a key to continue");
-                //Console.ReadLine();
 
                 if (currentTurn)
                 {
-                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 4, currentTurn,null, null);
-                    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
+                    //List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 4, currentTurn, null, null);
+                    //cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
+                    //ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
 
-                    //PlayTurn();
+                    PlayTurn();
+                    DisplayGameBoard();
+
                 }
                 else
                 {
-                    cPotentialMove chosenMove = myAgent.MiniMaxDecision(board, 4, currentTurn, null, null);
-                    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
 
+                    List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 4, currentTurn, null, null);
+                    cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
+                    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
+                    DisplayGameBoard();
+                    Console.WriteLine("Player " + currentTurn + " brought piece from field " + chosenMove.PreviousPosition[0] + "," + chosenMove.PreviousPosition[1] + " to field " + chosenMove.NewPosition[0] + "," + chosenMove.NewPosition[1]);
+                    Console.WriteLine("Current turn: " + turnCount + ". Hit a key to continue");
+                    Console.ReadLine();
                 }
                 currentTurn = !currentTurn;
-                DisplayGameBoard();
             }
             DisplayGameBoard();
 
@@ -117,6 +122,7 @@ namespace AIProject
         //function is currently broken
         private void DisplayGameBoard()
         {
+            Console.Clear();
             Console.SetCursorPosition(10, 2);
             Console.WriteLine(" |0 1 2 3 4 5 6 7 ");
             for (int i = 0; i < 8; i++)
@@ -182,7 +188,7 @@ namespace AIProject
 
         private bool ValidateFieldAndPiece(int currentX, int currentY, int nextX, int nextY)
         {
-            if (GameBoard[currentX, currentY].PieceTeam == currentTurn)
+            if (GameBoard[currentX, currentY] != null && GameBoard[currentX, currentY].PieceTeam == currentTurn)
             {
                 if (GameBoard[currentX, currentY].MovePiece(new[] { currentX, currentY }, new[] { nextX, nextY }))
                 {
@@ -198,7 +204,7 @@ namespace AIProject
                     return false;
                 }
             }
-            else if (GameBoard[currentX, currentY].PieceTeam == !currentTurn)
+            else if (GameBoard[currentX, currentY] != null && GameBoard[currentX, currentY].PieceTeam == !currentTurn)
             {
                 Console.WriteLine("this piece belongs to your opponent. retry");
                 return false;
