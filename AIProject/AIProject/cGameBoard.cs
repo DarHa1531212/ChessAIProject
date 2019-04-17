@@ -85,7 +85,7 @@ namespace AIProject
                 else
                 {
 
-                    List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 4, currentTurn, null, null, -999, 999);
+                    List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 10, currentTurn, null, null, -999, 999);
                     cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
                     ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
                     DisplayGameBoard();
