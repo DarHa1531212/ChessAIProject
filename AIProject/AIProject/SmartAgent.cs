@@ -9,7 +9,7 @@ namespace AIProject
     public class SmartAgent
     {
         List<cPiece[,]> validMoves = new List<cPiece[,]>();
-        public List<cPotentialMove> MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer, int[] previousPosition, int[] newPosition)
+        public List<cPotentialMove> MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer, int[] previousPosition, int[] newPosition, int bestAlpha, int bestBeta)
         {
             List<cPotentialMove> possibleActions, evalList;
             List<cPotentialMove> bestAction = new List<cPotentialMove>();
@@ -31,7 +31,7 @@ namespace AIProject
                 possibleActions = ListAllPossibleActions(currentState, currentPlayer);
                 foreach (var v in possibleActions)
                 {
-                    evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition);
+                    evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition, bestAlpha, bestBeta);
                     cPotentialMove eval = evalList[evalList.Count - 1];
 
                     if (CountUtility(eval.CurrentState) > maxEval)
@@ -41,6 +41,16 @@ namespace AIProject
                         maxEval = CountUtility(eval.CurrentState);
 
                     }
+
+                    if (bestAlpha < CountUtility(eval.CurrentState))
+                    {
+                        bestAlpha = CountUtility(eval.CurrentState);
+                    }
+
+                    if (bestBeta <= bestAlpha)
+                        break;
+
+
                 }
 
                 return bestAction;
@@ -53,7 +63,7 @@ namespace AIProject
 
                 foreach (var v in possibleActions)
                 {
-                    evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition);
+                    evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition, bestAlpha, bestBeta);
                     cPotentialMove eval = evalList[evalList.Count - 1];
                     if (CountUtility(eval.CurrentState) < minEval)
                     {
@@ -61,6 +71,13 @@ namespace AIProject
                         bestAction = evalList;
                         minEval = CountUtility(eval.CurrentState);
                     }
+                    if (bestBeta > CountUtility(eval.CurrentState))
+                    {
+                        bestBeta = CountUtility(eval.CurrentState);
+                    }
+
+                    if (bestBeta <= bestAlpha)
+                        break;
                 }
                 return bestAction;
             }
