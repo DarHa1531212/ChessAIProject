@@ -11,10 +11,8 @@ namespace AIProject
         List<cPiece[,]> validMoves = new List<cPiece[,]>();
         public List<cPotentialMove> MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer, int[] previousPosition, int[] newPosition)
         {
-
-            List<cPotentialMove> possibeActions;
-            List<cPotentialMove> evalList;
-           List< cPotentialMove> bestAction = new List<cPotentialMove>();
+            List<cPotentialMove> possibleActions, evalList;
+            List<cPotentialMove> bestAction = new List<cPotentialMove>();
             List<int> possibleActionsEvaluation = new List<int>();
 
             if (depth == 0)
@@ -30,46 +28,37 @@ namespace AIProject
             else if (currentPlayer)
             {
                 int maxEval = -999;
-                possibeActions = ListAllPossibleActions(currentState, currentPlayer);
-                foreach (var v in possibeActions)
+                possibleActions = ListAllPossibleActions(currentState, currentPlayer);
+                foreach (var v in possibleActions)
                 {
                     evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition);
                     cPotentialMove eval = evalList[evalList.Count - 1];
-                    //  possibleActionsEvaluation.Add
+
                     if (CountUtility(eval.CurrentState) > maxEval)
                     {
                         evalList.Add(new cPotentialMove(previousPosition, newPosition, currentState));
                         bestAction = evalList;
-                        //bestAction = eval;
-                        //bestAction.NewPosition = newPosition;
-                        // bestAction.PreviousPosition = previousPosition;
                         maxEval = CountUtility(eval.CurrentState);
 
                     }
                 }
-                
+
                 return bestAction;
             }
 
             else
             {
                 int minEval = 999;
-                possibeActions = ListAllPossibleActions(currentState, currentPlayer);
+                possibleActions = ListAllPossibleActions(currentState, currentPlayer);
 
-
-                foreach (var v in possibeActions)
+                foreach (var v in possibleActions)
                 {
-
                     evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition);
                     cPotentialMove eval = evalList[evalList.Count - 1];
-                    //  possibleActionsEvaluation.Add
                     if (CountUtility(eval.CurrentState) < minEval)
                     {
                         evalList.Add(new cPotentialMove(previousPosition, newPosition, currentState));
                         bestAction = evalList;
-                        //bestAction = eval;
-                        //bestAction.NewPosition = newPosition;
-                        // bestAction.PreviousPosition = previousPosition;
                         minEval = CountUtility(eval.CurrentState);
                     }
                 }
