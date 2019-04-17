@@ -102,7 +102,7 @@ namespace AIProject
                 if (ValidatePawnMove(currentPosition, new[] { newX + 1, newY }, currentState))
                 {
                     tempState = (cPiece[,])currentState.Clone();
-                    tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[newX +1 , newY] = tempState[currentPosition[0], currentPosition[1]];
                     tempState[currentPosition[0], currentPosition[1]] = null;
                     possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX + 1, newY }, tempState));
                 }
@@ -110,7 +110,7 @@ namespace AIProject
                 if (ValidatePawnMove(currentPosition, new[] { newX - 1, newY }, currentState))
                 {
                     tempState = (cPiece[,])currentState.Clone();
-                    tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[newX -1 , newY] = tempState[currentPosition[0], currentPosition[1]];
                     tempState[currentPosition[0], currentPosition[1]] = null;
                     possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX - 1, newY }, tempState));
                 }
@@ -140,7 +140,7 @@ namespace AIProject
                 if (ValidatePawnMove(currentPosition, new[] { newX + 1, newY }, currentState))
                 {
                     tempState = (cPiece[,])currentState.Clone();
-                    tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[newX +1 , newY] = tempState[currentPosition[0], currentPosition[1]];
                     tempState[currentPosition[0], currentPosition[1]] = null;
                     possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX + 1, newY }, tempState));
                 }
@@ -148,7 +148,7 @@ namespace AIProject
                 if (ValidatePawnMove(currentPosition, new[] { newX - 1, newY }, currentState))
                 {
                     tempState = (cPiece[,])currentState.Clone();
-                    tempState[newX, newY] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[newX -1 , newY] = tempState[currentPosition[0], currentPosition[1]];
                     tempState[currentPosition[0], currentPosition[1]] = null;
                     possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX - 1, newY }, tempState));
                 }
@@ -156,7 +156,7 @@ namespace AIProject
                 if (ValidatePawnMove(currentPosition, new[] { newX, newY - 1 }, currentState))
                 {
                     tempState = (cPiece[,])currentState.Clone();
-                    tempState[newX, newY + 1] = tempState[currentPosition[0], currentPosition[1]];
+                    tempState[newX, newY - 1] = tempState[currentPosition[0], currentPosition[1]];
                     tempState[currentPosition[0], currentPosition[1]] = null;
                     possibleMoves.Add(new cPotentialMove(currentPosition, new[] { newX, newY - 1 }, tempState));
                 }

@@ -74,7 +74,7 @@ namespace AIProject
 
                 if (currentTurn)
                 {
-                    //List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 4, currentTurn, null, null);
+                    //List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 5, currentTurn, null, null);
                     //cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
                     //ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
 
@@ -90,8 +90,8 @@ namespace AIProject
                     ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
                     DisplayGameBoard();
                     Console.WriteLine("Player " + currentTurn + " brought piece from field " + chosenMove.PreviousPosition[0] + "," + chosenMove.PreviousPosition[1] + " to field " + chosenMove.NewPosition[0] + "," + chosenMove.NewPosition[1]);
-                    Console.WriteLine("Current turn: " + turnCount + ". Hit a key to continue");
-                    Console.ReadLine();
+                    //Console.WriteLine("Current turn: " + turnCount + ". Hit a key to continue");
+                    //Console.ReadLine();
                 }
                 currentTurn = !currentTurn;
             }
