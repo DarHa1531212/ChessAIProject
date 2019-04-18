@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace AIProject
 {
-    public class cQueen : cPiece
+    public class Queen : Piece
 
     {
-        public cQueen(bool queenTeam) : base(queenTeam,9, 'Q')
+        public Queen(bool queenTeam) : base(queenTeam,9, 'Q')
         {
 
         }
@@ -26,14 +26,14 @@ namespace AIProject
 
         private bool RookMoves(int[] currentPosition, int[] newPosition)
         {
-            return ListAllRookMoves(currentPosition, newPosition);
+            return TestValidRookMove(currentPosition, newPosition);
         }
 
-        public override List<cPotentialMove> GetAllValidMoves(cPiece[,] currentState, int[] currentPosition)
+        public override List<PotentialMove> GetAllValidMoves(Piece[,] currentState, int[] currentPosition)
         {
-            List<cPotentialMove> possibleMoves = new List<cPotentialMove>();
+            List<PotentialMove> possibleMoves = new List<PotentialMove>();
 
-            possibleMoves.AddRange(GetAllValidBishopMoves(currentState, currentPosition));
+            possibleMoves.AddRange(TestValidBishopMove(currentState, currentPosition));
             possibleMoves.AddRange(GetAllValidRookMoves(currentState, currentPosition));
 
             return possibleMoves;

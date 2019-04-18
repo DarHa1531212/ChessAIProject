@@ -15,8 +15,8 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
-            cGameBoard myBoard = new cGameBoard(board);
+            Piece[,] board = new Piece[8, 8];
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -26,7 +26,7 @@ namespace QueenTests
             newPosition[0] = 5;
             newPosition[1] = 5;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -39,8 +39,8 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
-            cGameBoard myBoard = new cGameBoard(board);
+            Piece[,] board = new Piece[8, 8];
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -50,7 +50,7 @@ namespace QueenTests
             newPosition[0] = 5;
             newPosition[1] = 1;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -63,8 +63,8 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
-            cGameBoard myBoard = new cGameBoard(board);
+            Piece[,] board = new Piece[8, 8];
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -74,7 +74,7 @@ namespace QueenTests
             newPosition[0] = 1;
             newPosition[1] = 1;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -89,8 +89,8 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
-            cGameBoard myBoard = new cGameBoard(board);
+            Piece[,] board = new Piece[8, 8];
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -100,7 +100,7 @@ namespace QueenTests
             newPosition[0] = 1;
             newPosition[1] = 5;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -113,9 +113,9 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -125,7 +125,7 @@ namespace QueenTests
             newPosition[0] = 1;
             newPosition[1] = 1;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -137,9 +137,9 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -149,7 +149,7 @@ namespace QueenTests
             newPosition[0] = 0;
             newPosition[1] = 0;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -162,9 +162,9 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(true);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -174,7 +174,7 @@ namespace QueenTests
             newPosition[0] = 1;
             newPosition[1] = 1;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -187,9 +187,9 @@ namespace QueenTests
         {
 
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(true);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -199,7 +199,7 @@ namespace QueenTests
             newPosition[0] = 0;
             newPosition[1] = 0;
             //Act
-            cQueen myQueen = new cQueen(true);
+            Queen myQueen = new Queen(true);
             bool result = myQueen.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -219,7 +219,7 @@ namespace QueenTests
             newPosition[1] = 2;
 
             //Act
-            cQueen myKnight = new cQueen(true);
+            Queen myKnight = new Queen(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -230,9 +230,9 @@ namespace QueenTests
         [TestMethod]
         public void TestEatEnemyPiece_AssertTrue()
         {
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[3, 4] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -244,7 +244,7 @@ namespace QueenTests
             newPosition[1] = 4;
 
             //Act
-            cQueen myKing = new cQueen(true);
+            Queen myKing = new Queen(true);
             bool result = myKing.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -255,9 +255,9 @@ namespace QueenTests
         [TestMethod]
         public void TestMoveFurtherThanEnemyPiece_AssertFalse()
         {
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[3, 4] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -269,7 +269,7 @@ namespace QueenTests
             newPosition[1] = 5;
 
             //Act
-            cQueen myKing = new cQueen(true);
+            Queen myKing = new Queen(true);
             bool result = myKing.MovePiece(currentPosition, newPosition);
 
             //Assert

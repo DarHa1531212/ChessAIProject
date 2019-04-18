@@ -20,7 +20,7 @@ namespace KnightTests
             newPosition[1] = 1;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -41,7 +41,7 @@ namespace KnightTests
             newPosition[1] = 1;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             Assert.IsTrue(result);
@@ -60,7 +60,7 @@ namespace KnightTests
             newPosition[1] = 5;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -79,7 +79,7 @@ namespace KnightTests
             newPosition[1] = 5;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
         }
 
@@ -96,7 +96,7 @@ namespace KnightTests
             newPosition[1] = 2;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -117,7 +117,7 @@ namespace KnightTests
             newPosition[1] = 4;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -138,7 +138,7 @@ namespace KnightTests
             newPosition[1] = 4;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -159,7 +159,7 @@ namespace KnightTests
             newPosition[1] = 2;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -180,7 +180,7 @@ namespace KnightTests
             newPosition[1] = 2;
 
             //Act
-            cKnight myKnight = new cKnight(true);
+            Knight myKnight = new Knight(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -201,7 +201,7 @@ namespace KnightTests
             newPosition[1] = 8;
 
             //Act
-            cKing myKnight = new cKing(true);
+            King myKnight = new King(true);
             bool result = myKnight.MovePiece(currentPosition, newPosition);
 
             //Assert

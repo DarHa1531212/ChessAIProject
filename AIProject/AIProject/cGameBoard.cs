@@ -1,27 +1,102 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//-----------------------------------------------------------------------
+// <copyright file="cGameBoard.cs"  >
+//     Copyright (c) 8INF700. All rights reserved.
+//      Name: Hans Darmstadt-Bélanger
+//      Goal: Manage the game logic
+//      Date: 18/04/2019
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace AIProject
 {
-    public class cGameBoard
+    using System;
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// Contains the game management logic
+    /// </summary>
+    public class CGameBoard
     {
-        bool currentTurn = true;
-        int turnCount = 0;
+        #region properties
+        /// <summary>
+        /// The gameboard
+        /// </summary>
+        private static Piece[,] board = new Piece[8, 8];
 
-        static public cPiece[,] board = new cPiece[8, 8];
+        /// <summary>
+        /// The current player's turn
+        /// </summary>
+        private bool currentTurn = true;
 
-        public cGameBoard()
+        /// <summary>
+        /// Gets the game board.
+        /// </summary>
+        /// <value>
+        /// The game board.
+        /// </value>
+        public static Piece[,] GetGameBoard
+        {
+            get { return board; }
+        }
+        #endregion
+        #region ctor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CGameBoard"/> class.
+        /// </summary>
+        public CGameBoard()
         {
             InitialiseBoard();
         }
-        public cGameBoard(cPiece[,] customBoard)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CGameBoard"/> class.
+        /// </summary>
+        /// <param name="customBoard">The custom board used for unit tests mocking.</param>
+        public CGameBoard(Piece[,] customBoard)
         {
             board = customBoard;
         }
+        #endregion
 
+        #region public methods
+        /// <summary>
+        /// The main game loop. plays while both kings are still standing.
+        /// </summary>
+        public void GameLoop()
+        {
+            DisplayGameBoard();
+            SmartAgent myAgent = new SmartAgent();
+            while (FindKings())
+            {
+                if (currentTurn)
+                {
+                    // List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 5, currentTurn, null, null, -999, 999);
+                    // cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
+                    // ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
+                    PlayTurn();
+                    DisplayGameBoard();
+                }
+                else
+                {
+                    List<PotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 10, currentTurn, null, null, -999, 999);
+                    PotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
+                    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
+                    DisplayGameBoard();
+                    Console.WriteLine("Player " + currentTurn + " brought piece from field " + chosenMove.PreviousPosition[0] + "," + chosenMove.PreviousPosition[1] + " to field " + chosenMove.NewPosition[0] + "," + chosenMove.NewPosition[1]);
+                }
+
+                currentTurn = !currentTurn;
+            }
+
+            DisplayGameBoard();
+        }
+
+        #endregion
+
+        #region private methods
+        /// <summary>
+        /// Initialises the board to its default state.
+        /// </summary>
         private void InitialiseBoard()
         {
             for (int a = 0; a < 8; a++)
@@ -33,12 +108,12 @@ namespace AIProject
             }
 
             board[0, 0] = new cRook(true);
-            board[1, 0] = new cKnight(true);
-            board[2, 0] = new cBishop(true);
-            board[3, 0] = new cQueen(true);
-            board[4, 0] = new cKing(true);
-            board[5, 0] = new cBishop(true);
-            board[6, 0] = new cKnight(true);
+            board[1, 0] = new Knight(true);
+            board[2, 0] = new CBishop(true);
+            board[3, 0] = new Queen(true);
+            board[4, 0] = new King(true);
+            board[5, 0] = new CBishop(true);
+            board[6, 0] = new Knight(true);
             board[7, 0] = new cRook(true);
 
             for (int i = 0; i < 8; i++)
@@ -48,55 +123,19 @@ namespace AIProject
             }
 
             board[0, 7] = new cRook(false);
-            board[1, 7] = new cKnight(false);
-            board[2, 7] = new cBishop(false);
-            board[3, 7] = new cQueen(false);
-            board[4, 7] = new cKing(false);
-            board[5, 7] = new cBishop(false);
-            board[6, 7] = new cKnight(false);
+            board[1, 7] = new Knight(false);
+            board[2, 7] = new CBishop(false);
+            board[3, 7] = new Queen(false);
+            board[4, 7] = new King(false);
+            board[5, 7] = new CBishop(false);
+            board[6, 7] = new Knight(false);
             board[7, 7] = new cRook(false);
-
         }
 
-        public cPiece[,] GameBoard
-        {
-            get { return board; }
-        }
-
-        public void gameLoop()
-        {
-
-            DisplayGameBoard();
-            SmartAgent myAgent = new SmartAgent();
-            while (FindKings())
-            {
-                turnCount++;
-
-                if (currentTurn)
-                {
-                    //List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 5, currentTurn, null, null, -999, 999);
-                    //cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
-                    //ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
-
-                    PlayTurn();
-                    DisplayGameBoard();
-
-                }
-                else
-                {
-
-                    List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 10, currentTurn, null, null, -999, 999);
-                    cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
-                    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
-                    DisplayGameBoard();
-                    Console.WriteLine("Player " + currentTurn + " brought piece from field " + chosenMove.PreviousPosition[0] + "," + chosenMove.PreviousPosition[1] + " to field " + chosenMove.NewPosition[0] + "," + chosenMove.NewPosition[1]);
-;
-                }
-                currentTurn = !currentTurn;
-            }
-            DisplayGameBoard();
-
-        }
+        /// <summary>
+        /// Finds the kings to detect an endgame
+        /// </summary>
+        /// <returns>werther the game is over or not</returns>
         private bool FindKings()
         {
             bool foundWhiteKing = false;
@@ -105,20 +144,26 @@ namespace AIProject
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    if (GameBoard[i, j] != null && GameBoard[i, j].pieceSymbol == 'K')
+                    if (GetGameBoard[i, j] != null && GetGameBoard[i, j].PieceSymbol == 'K')
                     {
-                        if (GameBoard[i, j].PieceTeam == true)
+                        if (GetGameBoard[i, j].PieceTeam == true)
+                        {
                             foundWhiteKing = true;
+                        }
                         else
+                        {
                             foundBlackKing = true;
+                        }
                     }
                 }
             }
-            return foundBlackKing && foundWhiteKing;
 
+            return foundBlackKing && foundWhiteKing;
         }
 
-        //function is currently broken
+        /// <summary>
+        /// Displays the gameboard to the console
+        /// </summary>
         private void DisplayGameBoard()
         {
             Console.Clear();
@@ -131,7 +176,9 @@ namespace AIProject
                 for (int j = 0; j < 8; j++)
                 {
                     if (board[i, j] == null)
+                    {
                         Console.Write("*|");
+                    }
                     else
                     {
                         if (board[i, j].PieceTeam == true)
@@ -145,7 +192,7 @@ namespace AIProject
 
                         if (board[i, j] != null)
                         {
-                            Console.Write(board[i, j].pieceSymbol);
+                            Console.Write(board[i, j].PieceSymbol);
                         }
                         else
                         {
@@ -155,16 +202,17 @@ namespace AIProject
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.Write("|");
                     }
-
                 }
-
             }
+
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// The prompts to te get a player's move
+        /// </summary>
         private void PlayTurn()
         {
-            //     DisplayGameBoard();
             int currentX, currentY, nextX, nextY;
 
             do
@@ -179,23 +227,28 @@ namespace AIProject
                 nextX = Convert.ToInt32(Console.ReadLine());
                 Console.WriteLine("select Y axis of destination");
                 nextY = Convert.ToInt32(Console.ReadLine());
-
-
             }
             while (!ValidateFieldAndPiece(currentX, currentY, nextX, nextY));
         }
 
+        /// <summary>
+        /// Validates whether a move is valid or not
+        /// </summary>
+        /// <param name="currentX">current X axis of piece to move</param>
+        /// <param name="currentY">current Y axis of piece to move</param>
+        /// <param name="nextX">target X axis of piece to move</param>
+        /// <param name="nextY">target Y axis of piece to move</param>
+        /// <returns>whether the attemempted move is vaild or not</returns>
         private bool ValidateFieldAndPiece(int currentX, int currentY, int nextX, int nextY)
         {
-            if (GameBoard[currentX, currentY] != null && GameBoard[currentX, currentY].PieceTeam == currentTurn)
+            if (GetGameBoard[currentX, currentY] != null && GetGameBoard[currentX, currentY].PieceTeam == currentTurn)
             {
-                if (GameBoard[currentX, currentY].MovePiece(new[] { currentX, currentY }, new[] { nextX, nextY }))
+                if (GetGameBoard[currentX, currentY].MovePiece(new[] { currentX, currentY }, new[] { nextX, nextY }))
                 {
                     Console.WriteLine("accepted move");
                     board[nextX, nextY] = board[currentX, currentY];
                     board[currentX, currentY] = null;
                     return true;
-
                 }
                 else
                 {
@@ -203,22 +256,22 @@ namespace AIProject
                     return false;
                 }
             }
-            else if (GameBoard[currentX, currentY] != null && GameBoard[currentX, currentY].PieceTeam == !currentTurn)
+            else if (GetGameBoard[currentX, currentY] != null && GetGameBoard[currentX, currentY].PieceTeam == !currentTurn)
             {
                 Console.WriteLine("this piece belongs to your opponent. retry");
                 return false;
             }
-            else if (GameBoard[currentX, currentY] == null)
+            else if (GetGameBoard[currentX, currentY] == null)
             {
                 Console.WriteLine("there is no piece at this field. retry");
                 return false;
             }
-
             else
             {
                 Console.WriteLine("unknown error...");
                 throw new Exception();
             }
         }
+        #endregion
     }
 }

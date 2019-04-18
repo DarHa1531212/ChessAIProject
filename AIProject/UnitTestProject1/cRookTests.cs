@@ -34,9 +34,9 @@ namespace RookTests
         [TestMethod]
         public void TestEatEnemyPiece_AssertTrue()
         {
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[3, 4] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -59,9 +59,9 @@ namespace RookTests
         [TestMethod]
         public void TestMoveFurtherThanEnemyPiece_AssertFalse ()
         {
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[3, 4] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];

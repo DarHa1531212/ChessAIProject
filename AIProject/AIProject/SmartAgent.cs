@@ -8,17 +8,17 @@ namespace AIProject
 {
     public class SmartAgent
     {
-        List<cPiece[,]> validMoves = new List<cPiece[,]>();
-        public List<cPotentialMove> MiniMaxDecision(cPiece[,] currentState, int depth, bool currentPlayer, int[] previousPosition, int[] newPosition, int bestAlpha, int bestBeta)
+        //List<Piece[,]> validMoves = new List<Piece[,]>();
+        public List<PotentialMove> MiniMaxDecision(Piece[,] currentState, int depth, bool currentPlayer, int[] previousPosition, int[] newPosition, int bestAlpha, int bestBeta)
         {
-            List<cPotentialMove> possibleActions, evalList;
-            List<cPotentialMove> bestAction = new List<cPotentialMove>();
+            List<PotentialMove> possibleActions, evalList;
+            List<PotentialMove> bestAction = new List<PotentialMove>();
             List<int> possibleActionsEvaluation = new List<int>();
 
             if (depth == 0)
             {
-                cPotentialMove move = new cPotentialMove(previousPosition, newPosition, currentState);
-                List<cPotentialMove> returnList = new List<cPotentialMove>();
+                PotentialMove move = new PotentialMove(previousPosition, newPosition, currentState);
+                List<PotentialMove> returnList = new List<PotentialMove>();
                 returnList.Add(move);
                 return returnList;
 
@@ -32,11 +32,11 @@ namespace AIProject
                 foreach (var v in possibleActions)
                 {
                     evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition, bestAlpha, bestBeta);
-                    cPotentialMove eval = evalList[evalList.Count - 1];
+                    PotentialMove eval = evalList[evalList.Count - 1];
 
                     if (CountUtility(eval.CurrentState) > maxEval)
                     {
-                        evalList.Add(new cPotentialMove(previousPosition, newPosition, currentState));
+                        evalList.Add(new PotentialMove(previousPosition, newPosition, currentState));
                         bestAction = evalList;
                         maxEval = CountUtility(eval.CurrentState);
 
@@ -64,10 +64,10 @@ namespace AIProject
                 foreach (var v in possibleActions)
                 {
                     evalList = MiniMaxDecision(v.CurrentState, depth - 1, !currentPlayer, v.PreviousPosition, v.NewPosition, bestAlpha, bestBeta);
-                    cPotentialMove eval = evalList[evalList.Count - 1];
+                    PotentialMove eval = evalList[evalList.Count - 1];
                     if (CountUtility(eval.CurrentState) < minEval)
                     {
-                        evalList.Add(new cPotentialMove(previousPosition, newPosition, currentState));
+                        evalList.Add(new PotentialMove(previousPosition, newPosition, currentState));
                         bestAction = evalList;
                         minEval = CountUtility(eval.CurrentState);
                     }
@@ -83,7 +83,7 @@ namespace AIProject
             }
         }
 
-        private int CountUtility(cPiece[,] currentState)
+        private int CountUtility(Piece[,] currentState)
         {
             int sum = 0;
             for (int i = 0; i < 8; i++)
@@ -106,16 +106,16 @@ namespace AIProject
             return sum;
         }
 
-        private List<cPotentialMove> ListAllPossibleActions(cPiece[,] currentState, bool currentPlayer)
+        private List<PotentialMove> ListAllPossibleActions(Piece[,] currentState, bool currentPlayer)
         {
-            List<cPotentialMove> possibeActions = new List<cPotentialMove>();
+            List<PotentialMove> possibeActions = new List<PotentialMove>();
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 8; j++)
                 {
                     if (currentState[i, j] != null && currentState[i, j].PieceTeam == currentPlayer)
                     {
-                        List<cPotentialMove> actionsList = currentState[i, j].GetAllValidMoves(currentState, new[] { i, j });
+                        List<PotentialMove> actionsList = currentState[i, j].GetAllValidMoves(currentState, new[] { i, j });
                         foreach (var v in actionsList)
                         {
                             possibeActions.Add(v);

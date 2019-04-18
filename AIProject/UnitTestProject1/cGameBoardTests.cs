@@ -18,10 +18,10 @@ namespace GameBoardTests
         {
 
             //arrange            
-            cPiece[,] tempBoard = new cPiece[8, 8];
-            cKing myKing = new cKing(true);
+            Piece[,] tempBoard = new Piece[8, 8];
+            King myKing = new King(true);
             tempBoard[3, 3] = myKing;
-            cGameBoard myGameBoard = new cGameBoard(tempBoard);
+            CGameBoard myGameBoard = new CGameBoard(tempBoard);
 
 
             PrivateObject obj = new PrivateObject(myGameBoard);

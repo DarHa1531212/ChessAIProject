@@ -13,15 +13,15 @@ namespace SmartAgentTests
         public void testKingValidMovesList_Assert8ValidMoves()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
-            cKing myKing = new cKing(true);
+            Piece[,] tempBoard = new Piece[8, 8];
+            King myKing = new King(true);
             tempBoard[3, 3] = myKing;
 
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
             //assert
 
             Assert.AreEqual(8, actions.Count);
@@ -32,8 +32,8 @@ namespace SmartAgentTests
         {
 
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
-            cKing myKing = new cKing(true);
+            Piece[,] tempBoard = new Piece[8, 8];
+            King myKing = new King(true);
             tempBoard[3, 3] = myKing;
 
             SmartAgent tempAgent = new SmartAgent();
@@ -51,7 +51,7 @@ namespace SmartAgentTests
         public void ListWhitePawnValidMovesAtFirstMove_Assert3()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
+            Piece[,] tempBoard = new Piece[8, 8];
             Pawn myPawn = new Pawn(true);
             Pawn blackPawn = new Pawn(false);
             tempBoard[2, 1] = myPawn;
@@ -61,7 +61,7 @@ namespace SmartAgentTests
 
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
 
             //assert
@@ -73,7 +73,7 @@ namespace SmartAgentTests
         public void ListWhitePawnValidMoves_Assert2()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
+            Piece[,] tempBoard = new Piece[8, 8];
             Pawn myPawn = new Pawn(true);
             Pawn blackPawn = new Pawn(false);
             tempBoard[2, 2] = myPawn;
@@ -83,7 +83,7 @@ namespace SmartAgentTests
 
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
 
             //assert
@@ -95,7 +95,7 @@ namespace SmartAgentTests
         public void ListBlackPawnValidMovesAtFirstMove_Assert3()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
+            Piece[,] tempBoard = new Piece[8, 8];
             Pawn myBlackPawn = new Pawn(false);
             Pawn myWhitePawn = new Pawn(true);
             tempBoard[2, 6] = myBlackPawn;
@@ -104,7 +104,7 @@ namespace SmartAgentTests
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, false);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, false);
 
             //assert
 
@@ -115,14 +115,14 @@ namespace SmartAgentTests
         public void CountAllKnightValidMoves_Assert8()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
-            cKnight myKnight = new cKnight(true);
+            Piece[,] tempBoard = new Piece[8, 8];
+            Knight myKnight = new Knight(true);
             tempBoard[3, 3] = myKnight;
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(8, actions.Count);
@@ -133,14 +133,14 @@ namespace SmartAgentTests
         public void CountAllBishopValidMoves_Assert13()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
-            cBishop myBishop = new cBishop(true);
+            Piece[,] tempBoard = new Piece[8, 8];
+            CBishop myBishop = new CBishop(true);
             tempBoard[3, 3] = myBishop;
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(13, actions.Count);
@@ -151,14 +151,14 @@ namespace SmartAgentTests
         public void CountAllRookValidMoves_Assert14()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
+            Piece[,] tempBoard = new Piece[8, 8];
             cRook myRook = new cRook(true);
             tempBoard[3, 3] = myRook;
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(14, actions.Count);
@@ -169,14 +169,14 @@ namespace SmartAgentTests
         public void CountAllQueenValidMoves_Assert27()
         {
             //arrange
-            cPiece[,] tempBoard = new cPiece[8, 8];
-            cQueen myQueen = new cQueen(true);
+            Piece[,] tempBoard = new Piece[8, 8];
+            Queen myQueen = new Queen(true);
             tempBoard[3, 3] = myQueen;
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
 
             //act
-            List<cPotentialMove> actions = (List<cPotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
+            List<PotentialMove> actions = (List<PotentialMove>)obj.Invoke("ListAllPossibleActions", tempBoard, true);
 
             //assert
             Assert.AreEqual(27, actions.Count);

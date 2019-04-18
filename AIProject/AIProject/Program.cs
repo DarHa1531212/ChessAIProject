@@ -10,8 +10,8 @@ namespace AIProject
     {
         static void Main(string[] args)
         {
-            cGameBoard gameBoard = new cGameBoard();
-            gameBoard.gameLoop();
+            CGameBoard gameBoard = new CGameBoard();
+            gameBoard.GameLoop();
 
         }
     }

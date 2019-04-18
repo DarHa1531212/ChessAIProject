@@ -44,11 +44,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cBishop.cs" />
-    <Compile Include="cGameBoard.cs" />
-    <Compile Include="cKing.cs" />
-    <Compile Include="cKnight.cs" />
-    <Compile Include="cPawn.cs" />
-    <Compile Include="cPiece.cs" />
+    <Compile Include="cGameBoard.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="King.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Knight.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Pawn.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Piece.cs" />
     <Compile Include="cPotentialMove.cs" />
     <Compile Include="cQueen.cs" />
     <Compile Include="cRook.cs" />

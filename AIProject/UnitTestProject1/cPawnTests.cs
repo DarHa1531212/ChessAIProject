@@ -31,8 +31,8 @@ namespace PawnTests
         public void TestValidMoveBlackPawn_AssertTrue()
         {
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
-            cGameBoard myBoard = new cGameBoard(board);
+            Piece[,] board = new Piece[8, 8];
+            CGameBoard myBoard = new CGameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -74,10 +74,10 @@ namespace PawnTests
         [TestMethod]
         public void TestInvalidMoveAteDiagonnaly_AssertFalse()
         {
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[2, 3] = new Pawn(false);
             board[3, 4] = new Pawn(true);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -89,7 +89,7 @@ namespace PawnTests
             newPosition[1] = 4;
 
             //Act
-            cKing myPawn = new cKing(true);
+            King myPawn = new King(true);
             bool result = myPawn.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -130,8 +130,8 @@ namespace PawnTests
             newPosition[0] = 3;
             newPosition[1] = 4;
 
-            cPiece[,] board = new cPiece[8, 8];
-            cGameBoard myBoard = new cGameBoard(board);
+            Piece[,] board = new Piece[8, 8];
+            CGameBoard myBoard = new CGameBoard(board);
             //Act
             Pawn myPawn = new Pawn(false);
             bool result = myPawn.MovePiece(currentPosition, newPosition);
@@ -153,10 +153,10 @@ namespace PawnTests
             newPosition[0] = 2;
             newPosition[1] = 3;
 
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[2, 1] = new Pawn(true);
             board[2, 2] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             //Act
             Pawn myPawn = new Pawn(true);
@@ -179,10 +179,10 @@ namespace PawnTests
             newPosition[0] = 2;
             newPosition[1] = 4;
 
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[2, 6] = new Pawn(true);
             board[2, 5] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
             //Act
             Pawn myPawn = new Pawn(false);
@@ -198,10 +198,10 @@ namespace PawnTests
         public void TestValidMoveWhitePawnTwoStepsFirstMoveEatsEnemyPiece_AssertFalse()
         {
             //Arrange
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[3, 1] = new Pawn(true);
             board[3, 2] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
 
 
             int[] currentPosition = new int[2];
@@ -232,9 +232,9 @@ namespace PawnTests
             newPosition[0] = 1;
             newPosition[1] = 2;
 
-            cPiece[,] board = new cPiece[8, 8];
+            Piece[,] board = new Piece[8, 8];
             board[1, 2] = new Pawn(false);
-            cGameBoard myBoard = new cGameBoard(board);
+            CGameBoard myBoard = new CGameBoard(board);
             //Act
             Pawn myPawn = new Pawn(true);
             bool result = myPawn.MovePiece(currentPosition, newPosition);
