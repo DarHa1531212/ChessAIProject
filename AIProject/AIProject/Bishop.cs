@@ -35,7 +35,7 @@ namespace AIProject
         /// <param name="currentPosition">The current position.</param>
         /// <param name="newPosition">The new position.</param>
         /// <returns>The validity of the move being attempted</returns>
-        public new bool MovePiece(int[] currentPosition, int[] newPosition)
+        public override bool TestValidMove(int[] currentPosition, int[] newPosition)
         {
            return TestValidBishopMove(currentPosition, newPosition);
         }

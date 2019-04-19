@@ -70,15 +70,15 @@ namespace AIProject
             {
                 if (currentTurn)
                 {
-                    // List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 5, currentTurn, null, null, -999, 999);
-                    // cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
-                    // ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
+                    //    List<PotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 6, currentTurn, null, null, -999, 999);
+                    //    PotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
+                    //    ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
                     PlayTurn();
                     DisplayGameBoard();
                 }
                 else
                 {
-                    List<PotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 10, currentTurn, null, null, -999, 999);
+                    List<PotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 6, currentTurn, null, null, -999, 999);
                     PotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
                     ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
                     DisplayGameBoard();
@@ -162,11 +162,13 @@ namespace AIProject
                     ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
                     DisplayGameBoard();
                     Console.WriteLine("Player " + currentTurn + " brought piece from field " + chosenMove.PreviousPosition[0] + "," + chosenMove.PreviousPosition[1] + " to field " + chosenMove.NewPosition[0] + "," + chosenMove.NewPosition[1]);
-;
+                    ;
                 }
                 currentTurn = !currentTurn;
             }
             DisplayGameBoard();
+            Console.WriteLine("Game over!");
+            Console.ReadLine();
 
         }
         private bool FindKings()
@@ -262,8 +264,7 @@ namespace AIProject
                 nextY = Convert.ToInt32(Console.ReadLine());
             }
             while (!ValidateFieldAndPiece(currentX, currentY, nextX, nextY));
-            Console.WriteLine("Game over!");
-            Console.ReadLine();
+
         }
 
         /// <summary>
