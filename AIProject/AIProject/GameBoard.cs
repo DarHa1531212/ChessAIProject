@@ -132,12 +132,10 @@ namespace AIProject
             board[7, 7] = new Rook(false);
         }
 
-<<<<<<< Updated upstream
         /// <summary>
         /// Finds the kings to detect an endgame
         /// </summary>
         /// <returns>werther the game is over or not</returns>
-=======
         public void gameLoop()
         {
 
@@ -145,7 +143,6 @@ namespace AIProject
             SmartAgent myAgent = new SmartAgent();
             while (FindKings())
             {
-                turnCount++;
 
                 if (currentTurn)
                 {
@@ -160,8 +157,8 @@ namespace AIProject
                 else
                 {
 
-                    List<cPotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 6, currentTurn, null, null, -999, 999);
-                    cPotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
+                    List<PotentialMove> chosenMoveList = myAgent.MiniMaxDecision(board, 6, currentTurn, null, null, -999, 999);
+                    PotentialMove chosenMove = chosenMoveList[chosenMoveList.Count - 2];
                     ValidateFieldAndPiece(chosenMove.PreviousPosition[0], chosenMove.PreviousPosition[1], chosenMove.NewPosition[0], chosenMove.NewPosition[1]);
                     DisplayGameBoard();
                     Console.WriteLine("Player " + currentTurn + " brought piece from field " + chosenMove.PreviousPosition[0] + "," + chosenMove.PreviousPosition[1] + " to field " + chosenMove.NewPosition[0] + "," + chosenMove.NewPosition[1]);
@@ -172,7 +169,6 @@ namespace AIProject
             DisplayGameBoard();
 
         }
->>>>>>> Stashed changes
         private bool FindKings()
         {
             bool foundWhiteKing = false;
