@@ -90,7 +90,7 @@ namespace AIProject
 
             if (currentState == null)
             {
-                tempBoard = CGameBoard.GetGameBoard;
+                tempBoard = GameBoard.GetGameBoard;
             }
             else
             {
@@ -124,7 +124,7 @@ namespace AIProject
         /// <param name="v1">Previous position</param>
         /// <param name="v2">Target position</param>
         /// <returns>The move is invalid</returns>
-        public virtual bool MovePiece(int[] v1, int[] v2)
+        public virtual bool TestValidMove(int[] v1, int[] v2)
         {
             Console.WriteLine("Not implemented error:");
             Console.WriteLine("Trying to move piece from field " + v1[0] + "," + v1[1]);
@@ -157,7 +157,7 @@ namespace AIProject
         {
             List<int[]> validMoves = new List<int[]>();
             Piece[,] tempBoard = new Piece[8, 8];
-            tempBoard = CGameBoard.GetGameBoard;
+            tempBoard = GameBoard.GetGameBoard;
             int[] tempVal = new int[2];
             int posX, posY;
 
@@ -244,11 +244,11 @@ namespace AIProject
         /// <param name="currentPosition">the bishop's current position</param>
         /// <param name="newPosition">The move's target position</param>
         /// <returns>the validity of the attempted move</returns>
-        public bool ListAllBishopMoves(int[] currentPosition, int[] newPosition)
+        public bool TestValidBishopMove(int[] currentPosition, int[] newPosition)
         {
             List<int[]> validMoves = new List<int[]>();
             Piece[,] tempBoard = new Piece[8, 8];
-            tempBoard = CGameBoard.GetGameBoard;
+            tempBoard = GameBoard.GetGameBoard;
             int[] tempVal = new int[2];
             int posX, posY;
 

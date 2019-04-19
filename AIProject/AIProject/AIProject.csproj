@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cBishop.cs" />
-    <Compile Include="cGameBoard.cs">
+    <Compile Include="Bishop.cs" />
+    <Compile Include="GameBoard.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="King.cs">
@@ -57,11 +57,13 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Piece.cs" />
-    <Compile Include="cPotentialMove.cs" />
-    <Compile Include="cQueen.cs" />
-    <Compile Include="cRook.cs" />
+    <Compile Include="PotentialMove.cs" />
+    <Compile Include="Queen.cs" />
+    <Compile Include="Rook.cs" />
     <Compile Include="IPiece.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Program.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmartAgent.cs" />
   </ItemGroup>

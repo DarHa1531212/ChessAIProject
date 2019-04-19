@@ -136,7 +136,7 @@ namespace AIProject
         /// <param name="currentPosition">The current position of the knight</param>
         /// <param name="newPosition">the target position of the attempted move</param>
         /// <returns>whether the attempted move is valid</returns>
-        public override bool MovePiece(int[] currentPosition, int[] newPosition)
+        public override bool TestValidMove(int[] currentPosition, int[] newPosition)
         {
             if (TestValidMove(newPosition, currentPosition, PieceTeam, null))
             {

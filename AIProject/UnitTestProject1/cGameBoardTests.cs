@@ -21,7 +21,7 @@ namespace GameBoardTests
             Piece[,] tempBoard = new Piece[8, 8];
             King myKing = new King(true);
             tempBoard[3, 3] = myKing;
-            CGameBoard myGameBoard = new CGameBoard(tempBoard);
+            GameBoard myGameBoard = new GameBoard(tempBoard);
 
 
             PrivateObject obj = new PrivateObject(myGameBoard);

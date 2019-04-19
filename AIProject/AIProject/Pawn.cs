@@ -34,7 +34,7 @@ namespace AIProject
         /// <param name="currentPosition">The pawn's current position</param>
         /// <param name="targetPosition">The pawn's target position</param>
         /// <returns>The validity of the attempted move</returns>
-        public override bool MovePiece(int[] currentPosition, int[] targetPosition)
+        public override bool TestValidMove(int[] currentPosition, int[] targetPosition)
         {
             if (ValidatePawnMove(currentPosition, targetPosition, null))
             {
@@ -156,7 +156,7 @@ namespace AIProject
         {
             if (currentState == null)
             {
-                currentState = CGameBoard.GetGameBoard;
+                currentState = GameBoard.GetGameBoard;
             }
 
             int posX = nextPosition[0];

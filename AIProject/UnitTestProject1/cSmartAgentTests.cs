@@ -134,7 +134,7 @@ namespace SmartAgentTests
         {
             //arrange
             Piece[,] tempBoard = new Piece[8, 8];
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             tempBoard[3, 3] = myBishop;
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);
@@ -152,7 +152,7 @@ namespace SmartAgentTests
         {
             //arrange
             Piece[,] tempBoard = new Piece[8, 8];
-            cRook myRook = new cRook(true);
+            Rook myRook = new Rook(true);
             tempBoard[3, 3] = myRook;
             SmartAgent tempAgent = new SmartAgent();
             PrivateObject obj = new PrivateObject(tempAgent);

@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="cBishop.cs"  >
+// <copyright file="Bishop.cs"  >
 //     Copyright (c) 8INF700. All rights reserved.
 //      Name: Hans Darmstadt-Bélanger
 //      Goal: The controller for the bishops
@@ -19,13 +19,13 @@ namespace AIProject
     /// Contains Bishop related logic
     /// </summary>
     /// <seealso cref="AIProject.Piece" />
-    public class CBishop : Piece
+    public class Bishop : Piece
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CBishop"/> class.
+        /// Initializes a new instance of the <see cref="Bishop"/> class.
         /// </summary>
         /// <param name="bishopTeam">if set to <c>true</c> [bishop team].</param>
-        public CBishop(bool bishopTeam) : base(bishopTeam, 3, 'B')
+        public Bishop(bool bishopTeam) : base(bishopTeam, 3, 'B')
         {
         }
 
@@ -37,7 +37,7 @@ namespace AIProject
         /// <returns>The validity of the move being attempted</returns>
         public new bool MovePiece(int[] currentPosition, int[] newPosition)
         {
-           return base.ListAllBishopMoves(currentPosition, newPosition);
+           return TestValidBishopMove(currentPosition, newPosition);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace AIProject
         /// <returns>All valid moves for the bishop</returns>
         public override List<PotentialMove> GetAllValidMoves(Piece[,] currentState, int[] currentPosition)
         {
-            return base.TestValidBishopMove(currentState, currentPosition);
+            return TestValidBishopMove(currentState, currentPosition);
         }
     }
 }

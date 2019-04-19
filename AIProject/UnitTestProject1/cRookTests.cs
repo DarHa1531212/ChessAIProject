@@ -23,8 +23,8 @@ namespace RookTests
             newPosition[1] = 2;
 
             //Act
-            cRook myKnight = new cRook(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            Rook myKnight = new Rook(true);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -36,7 +36,7 @@ namespace RookTests
         {
             Piece[,] board = new Piece[8, 8];
             board[3, 4] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -48,8 +48,8 @@ namespace RookTests
             newPosition[1] = 4;
 
             //Act
-            cRook myKing = new cRook(true);
-            bool result = myKing.MovePiece(currentPosition, newPosition);
+            Rook myKing = new Rook(true);
+            bool result = myKing.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -61,7 +61,7 @@ namespace RookTests
         {
             Piece[,] board = new Piece[8, 8];
             board[3, 4] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -73,8 +73,8 @@ namespace RookTests
             newPosition[1] = 5;
 
             //Act
-            cRook myKing = new cRook(true);
-            bool result = myKing.MovePiece(currentPosition, newPosition);
+            Rook myKing = new Rook(true);
+            bool result = myKing.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);

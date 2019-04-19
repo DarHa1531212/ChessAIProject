@@ -34,7 +34,7 @@ namespace AIProject
         /// <param name="currentPosition">The king's current position</param>
         /// <param name="newPosition">The king's target position</param>
         /// <returns>Wherther the attempted move is valid</returns>
-        public override bool MovePiece(int[] currentPosition, int[] newPosition)
+        public override bool TestValidMove(int[] currentPosition, int[] newPosition)
         {
             // Moves a king can make
             if (currentPosition[0] - newPosition[0] == 1 || currentPosition[0] - newPosition[0] == -1 || currentPosition[1] - newPosition[1] == 1 || currentPosition[1] - newPosition[1] == -1)

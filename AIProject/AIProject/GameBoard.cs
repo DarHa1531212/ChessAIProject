@@ -15,7 +15,7 @@ namespace AIProject
     /// <summary>
     /// Contains the game management logic
     /// </summary>
-    public class CGameBoard
+    public class GameBoard
     {
         #region properties
         /// <summary>
@@ -41,18 +41,18 @@ namespace AIProject
         #endregion
         #region ctor
         /// <summary>
-        /// Initializes a new instance of the <see cref="CGameBoard"/> class.
+        /// Initializes a new instance of the <see cref="GameBoard"/> class.
         /// </summary>
-        public CGameBoard()
+        public GameBoard()
         {
             InitialiseBoard();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CGameBoard"/> class.
+        /// Initializes a new instance of the <see cref="GameBoard"/> class.
         /// </summary>
         /// <param name="customBoard">The custom board used for unit tests mocking.</param>
-        public CGameBoard(Piece[,] customBoard)
+        public GameBoard(Piece[,] customBoard)
         {
             board = customBoard;
         }
@@ -107,14 +107,14 @@ namespace AIProject
                 }
             }
 
-            board[0, 0] = new cRook(true);
+            board[0, 0] = new Rook(true);
             board[1, 0] = new Knight(true);
-            board[2, 0] = new CBishop(true);
+            board[2, 0] = new Bishop(true);
             board[3, 0] = new Queen(true);
             board[4, 0] = new King(true);
-            board[5, 0] = new CBishop(true);
+            board[5, 0] = new Bishop(true);
             board[6, 0] = new Knight(true);
-            board[7, 0] = new cRook(true);
+            board[7, 0] = new Rook(true);
 
             for (int i = 0; i < 8; i++)
             {
@@ -122,14 +122,14 @@ namespace AIProject
                 board[i, 6] = new Pawn(false);
             }
 
-            board[0, 7] = new cRook(false);
+            board[0, 7] = new Rook(false);
             board[1, 7] = new Knight(false);
-            board[2, 7] = new CBishop(false);
+            board[2, 7] = new Bishop(false);
             board[3, 7] = new Queen(false);
             board[4, 7] = new King(false);
-            board[5, 7] = new CBishop(false);
+            board[5, 7] = new Bishop(false);
             board[6, 7] = new Knight(false);
-            board[7, 7] = new cRook(false);
+            board[7, 7] = new Rook(false);
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace AIProject
         {
             if (GetGameBoard[currentX, currentY] != null && GetGameBoard[currentX, currentY].PieceTeam == currentTurn)
             {
-                if (GetGameBoard[currentX, currentY].MovePiece(new[] { currentX, currentY }, new[] { nextX, nextY }))
+                if (GetGameBoard[currentX, currentY].TestValidMove(new[] { currentX, currentY }, new[] { nextX, nextY }))
                 {
                     Console.WriteLine("accepted move");
                     board[nextX, nextY] = board[currentX, currentY];

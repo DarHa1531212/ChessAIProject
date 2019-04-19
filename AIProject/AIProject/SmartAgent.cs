@@ -1,14 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//-----------------------------------------------------------------------
+// <copyright file="SmartAgent.cs" company = "8INF700" >
+//     Copyright (c) 8INF700. All rights reserved.
+//      Name: Hans Darmstadt-Bélanger
+//      Goal: Contains the logic for the smart agent
+//      Date: 12/02/2019
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace AIProject
 {
+    using System.Collections.Generic;
+
+    /// <summary>
+    /// The smart agent's logic
+    /// </summary>
     public class SmartAgent
     {
-        //List<Piece[,]> validMoves = new List<Piece[,]>();
+        #region public methods
+
+        /// <summary>
+        /// The recursive function to pick a move using the minimax algorithm
+        /// </summary>
+        /// <param name="currentState">The current gameboard's state</param>
+        /// <param name="depth">the depth of the recursive calls</param>
+        /// <param name="currentPlayer">The player currently playing</param>
+        /// <param name="previousPosition">The previous position of the piece that moved in the last round</param>
+        /// <param name="newPosition">The new position of the piece that moved in the last round</param>
+        /// <param name="bestAlpha">The best move alpha could make. Used for pruning</param>
+        /// <param name="bestBeta">The best move beta could make. Used for pruning</param>
+        /// <returns>the list of optimal moves</returns>
         public List<PotentialMove> MiniMaxDecision(Piece[,] currentState, int depth, bool currentPlayer, int[] previousPosition, int[] newPosition, int bestAlpha, int bestBeta)
         {
             List<PotentialMove> possibleActions, evalList;
@@ -21,10 +41,7 @@ namespace AIProject
                 List<PotentialMove> returnList = new List<PotentialMove>();
                 returnList.Add(move);
                 return returnList;
-
             }
-
-            //white plays
             else if (currentPlayer)
             {
                 int maxEval = -999;
@@ -39,7 +56,6 @@ namespace AIProject
                         evalList.Add(new PotentialMove(previousPosition, newPosition, currentState));
                         bestAction = evalList;
                         maxEval = CountUtility(eval.CurrentState);
-
                     }
 
                     if (bestAlpha < CountUtility(eval.CurrentState))
@@ -48,14 +64,13 @@ namespace AIProject
                     }
 
                     if (bestBeta <= bestAlpha)
+                    {
                         break;
-
-
+                    }
                 }
 
                 return bestAction;
             }
-
             else
             {
                 int minEval = 999;
@@ -71,18 +86,31 @@ namespace AIProject
                         bestAction = evalList;
                         minEval = CountUtility(eval.CurrentState);
                     }
+
                     if (bestBeta > CountUtility(eval.CurrentState))
                     {
                         bestBeta = CountUtility(eval.CurrentState);
                     }
 
                     if (bestBeta <= bestAlpha)
+                    {
                         break;
+                    }
                 }
+
                 return bestAction;
             }
         }
 
+        #endregion
+
+        #region private methods
+
+        /// <summary>
+        /// Counts the utiliti/value of a given state
+        /// </summary>
+        /// <param name="currentState">The current state</param>
+        /// <returns>The utility</returns>
         private int CountUtility(Piece[,] currentState)
         {
             int sum = 0;
@@ -103,9 +131,16 @@ namespace AIProject
                     }
                 }
             }
+
             return sum;
         }
 
+        /// <summary>
+        /// Gets all possible actions for all pieces of the current player
+        /// </summary>
+        /// <param name="currentState">The current gameboard's state</param>
+        /// <param name="currentPlayer">The player currently playing</param>
+        /// <returns>all the possible actions the player can make</returns>
         private List<PotentialMove> ListAllPossibleActions(Piece[,] currentState, bool currentPlayer)
         {
             List<PotentialMove> possibeActions = new List<PotentialMove>();
@@ -126,5 +161,6 @@ namespace AIProject
 
             return possibeActions;
         }
+        #endregion
     }
 }

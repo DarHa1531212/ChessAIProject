@@ -21,7 +21,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -42,7 +42,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             Assert.IsTrue(result);
         }
@@ -61,7 +61,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -80,7 +80,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
         }
 
         [TestMethod]
@@ -97,7 +97,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -118,7 +118,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -139,7 +139,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -160,7 +160,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -181,7 +181,7 @@ namespace KnightTests
 
             //Act
             Knight myKnight = new Knight(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
@@ -202,7 +202,7 @@ namespace KnightTests
 
             //Act
             King myKnight = new King(true);
-            bool result = myKnight.MovePiece(currentPosition, newPosition);
+            bool result = myKnight.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);

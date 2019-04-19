@@ -27,7 +27,7 @@ namespace KingTests
 
             //Act
             King myKing = new King(true);
-            bool result = myKing.MovePiece(currentPosition, newPosition);
+            bool result = myKing.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -48,7 +48,7 @@ namespace KingTests
 
             //Act
             King myKing = new King(true);
-            bool result = myKing.MovePiece(currentPosition, newPosition);
+            bool result = myKing.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
@@ -64,7 +64,7 @@ namespace KingTests
             position[1] = 1;
             //Act
             King myKing = new King(true);
-            bool result = myKing.MovePiece(position, position);
+            bool result = myKing.TestValidMove(position, position);
 
             //Assert
             Assert.IsFalse(result);
@@ -76,7 +76,7 @@ namespace KingTests
             Piece[,] board = new Piece[8, 8];
             board[0, 0] = new King(true);
             board[1, 0] = new King(false);
-            CGameBoard myBoard = new CGameBoard(board); 
+            GameBoard myBoard = new GameBoard(board); 
             
             //Arrange
             int[] currentPosition = new int[2];
@@ -89,7 +89,7 @@ namespace KingTests
 
             //Act
             King myKing = new King(true);
-            bool result = myKing.MovePiece(currentPosition, newPosition);
+            bool result = myKing.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -102,7 +102,7 @@ namespace KingTests
             Piece[,] board = new Piece[8, 8];
             board[0, 0] = new King(true);
             board[1, 0] = new King(true);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -115,7 +115,7 @@ namespace KingTests
 
             //Act
             King myKing = new King(true);
-            bool result = myKing.MovePiece(currentPosition, newPosition);
+            bool result = myKing.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);

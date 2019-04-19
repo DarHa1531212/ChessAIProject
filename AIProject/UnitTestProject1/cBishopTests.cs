@@ -14,7 +14,7 @@ namespace Bishoptests
 
             //Arrange
             Piece[,] board = new Piece[8, 8];
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -24,7 +24,7 @@ namespace Bishoptests
             newPosition[0] = 5;
             newPosition[1] = 5;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -38,7 +38,7 @@ namespace Bishoptests
 
             //Arrange
             Piece[,] board = new Piece[8, 8];
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -48,7 +48,7 @@ namespace Bishoptests
             newPosition[0] = 5;
             newPosition[1] = 1;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -62,7 +62,7 @@ namespace Bishoptests
 
             //Arrange
             Piece[,] tempBoard = new Piece[8, 8];
-            CGameBoard myBoard = new CGameBoard(tempBoard);
+            GameBoard myBoard = new GameBoard(tempBoard);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -72,7 +72,7 @@ namespace Bishoptests
             newPosition[0] = 1;
             newPosition[1] = 1;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -88,7 +88,7 @@ namespace Bishoptests
 
             //Arrange
             Piece[,] board = new Piece[8, 8];
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -98,7 +98,7 @@ namespace Bishoptests
             newPosition[0] = 1;
             newPosition[1] = 5;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -113,7 +113,7 @@ namespace Bishoptests
             //Arrange
             Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -123,7 +123,7 @@ namespace Bishoptests
             newPosition[0] = 1;
             newPosition[1] = 1;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -137,7 +137,7 @@ namespace Bishoptests
             //Arrange
             Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -147,7 +147,7 @@ namespace Bishoptests
             newPosition[0] = 0;
             newPosition[1] = 0;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -162,7 +162,7 @@ namespace Bishoptests
             //Arrange
             Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(true);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -172,7 +172,7 @@ namespace Bishoptests
             newPosition[0] = 1;
             newPosition[1] = 1;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert
@@ -187,7 +187,7 @@ namespace Bishoptests
             //Arrange
             Piece[,] board = new Piece[8, 8];
             board[1, 1] = new Pawn(true);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -197,7 +197,7 @@ namespace Bishoptests
             newPosition[0] = 0;
             newPosition[1] = 0;
             //Act
-            CBishop myBishop = new CBishop(true);
+            Bishop myBishop = new Bishop(true);
             bool result = myBishop.MovePiece(currentPosition, newPosition);
 
             //Assert

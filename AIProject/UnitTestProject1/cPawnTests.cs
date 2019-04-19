@@ -20,7 +20,7 @@ namespace PawnTests
             newPosition[1] = 2;
             //Act
             Pawn myPawn = new Pawn(true);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -32,7 +32,7 @@ namespace PawnTests
         {
             //Arrange
             Piece[,] board = new Piece[8, 8];
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             int[] currentPosition = new int[2];
             currentPosition[0] = 3;
@@ -43,7 +43,7 @@ namespace PawnTests
             newPosition[1] = 4;
             //Act
             Pawn myPawn = new Pawn(false);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -64,7 +64,7 @@ namespace PawnTests
             newPosition[1] = 6;
             //Act
             Pawn myPawn = new Pawn(false);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
@@ -77,7 +77,7 @@ namespace PawnTests
             Piece[,] board = new Piece[8, 8];
             board[2, 3] = new Pawn(false);
             board[3, 4] = new Pawn(true);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             //Arrange
             int[] currentPosition = new int[2];
@@ -90,7 +90,7 @@ namespace PawnTests
 
             //Act
             King myPawn = new King(true);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
@@ -111,7 +111,7 @@ namespace PawnTests
             newPosition[1] = 3;
             //Act
             Pawn myPawn = new Pawn(true);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -131,10 +131,10 @@ namespace PawnTests
             newPosition[1] = 4;
 
             Piece[,] board = new Piece[8, 8];
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
             //Act
             Pawn myPawn = new Pawn(false);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsTrue(result);
@@ -156,11 +156,11 @@ namespace PawnTests
             Piece[,] board = new Piece[8, 8];
             board[2, 1] = new Pawn(true);
             board[2, 2] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             //Act
             Pawn myPawn = new Pawn(true);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
@@ -182,11 +182,11 @@ namespace PawnTests
             Piece[,] board = new Piece[8, 8];
             board[2, 6] = new Pawn(true);
             board[2, 5] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
             //Act
             Pawn myPawn = new Pawn(false);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
@@ -201,7 +201,7 @@ namespace PawnTests
             Piece[,] board = new Piece[8, 8];
             board[3, 1] = new Pawn(true);
             board[3, 2] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
 
 
             int[] currentPosition = new int[2];
@@ -213,7 +213,7 @@ namespace PawnTests
             newPosition[1] = 3;
             //Act
             Pawn myPawn = new Pawn(true);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
@@ -234,10 +234,10 @@ namespace PawnTests
 
             Piece[,] board = new Piece[8, 8];
             board[1, 2] = new Pawn(false);
-            CGameBoard myBoard = new CGameBoard(board);
+            GameBoard myBoard = new GameBoard(board);
             //Act
             Pawn myPawn = new Pawn(true);
-            bool result = myPawn.MovePiece(currentPosition, newPosition);
+            bool result = myPawn.TestValidMove(currentPosition, newPosition);
 
             //Assert
             Assert.IsFalse(result);
